@@ -19,7 +19,5 @@ describe('GeneralDescriptionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+
 });

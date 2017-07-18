@@ -58,19 +58,4 @@ describe('AppComponent', () => {
       );
     })
   );
-
-  it(
-    'should feths links from app component',
-    fakeAsync(() => {
-      const expected = [
-        { id: 1, name: 'Individual', routerLink: '/individual' },
-      ];
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.componentInstance.getLinks();
-      tick();
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.componentInstance.menuLinks;
-      expect(compiled).toEqual(expected);
-    })
-  );
 });

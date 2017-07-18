@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-
 import { Company } from '../../models/company'
 import { DataserviceService } from '../../shared/dataservice.service'
 import 'rxjs/add/operator/map'
