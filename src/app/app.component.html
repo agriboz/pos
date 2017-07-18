@@ -1,0 +1,25 @@
+<div style="position:absolute;top:0;left:0;right:0;bottom:0;">
+  <md-sidenav-container #sidenav style="height:100%;width:100%;">
+    <md-sidenav mode="side" #sidenav opened="true">
+      <md-toolbar>Menu</md-toolbar>
+      <md-nav-list>
+        <md-list-item *ngFor="let l of menuLinks">
+          <md-icon md-list-icon color="primary">home</md-icon>
+          <a md-line routerLink="{{l.routerLink}}">{{ l.name }}</a>
+        </md-list-item>
+      </md-nav-list>
+    </md-sidenav>
+    <md-toolbar color="primary" style="min-height:64px;">
+      <button md-icon-button (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+      </button>
+      <h1>{{title}}</h1>
+    </md-toolbar>
+    <div class="inner-sidenav-content">
+      <div style="padding-top:2em;padding-bottom:2em;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </md-sidenav-container>
+</div>
+
