@@ -34,6 +34,6 @@ module.exports = function (config) {
         flags: ['--no-sandbox'] // with sandbox it fails under Docker
       }
     },
-    singleRun: true
+    singleRun: false
   });
 };
