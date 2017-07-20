@@ -28,16 +28,6 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false,
-    desiredCapabilities: {
-      browserName: process.env.BROWSER || 'Chrome',
-      chromeOptions: {
-        args: [
-          // '--enable-logging',
-          '--headless',
-          '--no-sandbox',
-        ],
-      },
-    },
+    singleRun: false
   });
 };
