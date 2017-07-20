@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 
 export class HttpInterceptorService extends Http {
   constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
+
     super(backend, defaultOptions);
   }
 
