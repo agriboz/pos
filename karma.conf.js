@@ -15,6 +15,19 @@ module.exports = function (config) {
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    desiredCapabilities: {
+      browserName: process.env.BROWSER || 'chrome',
+      chromeOptions: {
+        args: [
+          '--headless',
+          '--no-sandbox'
+        ],
+        prefs: {
+          'download.default_directory': __dirname + '/tmp/test/download',
+          'download.prompt_for_download': false
+        }
+      }
+    },
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
