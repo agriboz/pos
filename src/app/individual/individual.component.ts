@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
-import { Company } from '../models/company';
+import { Company } from '../shared/company.model';
 import { DataserviceService } from '../shared/dataservice.service'
 import 'rxjs/add/operator/map'
 

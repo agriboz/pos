@@ -19,7 +19,6 @@ import { GeneralDescriptionComponent } from './general-description/general-descr
     ReactiveFormsModule,
     CommonModule,
     IndividualRoutingModule,
-
   ],
   providers: [],
   exports: [IndividualComponent, GeneralDescriptionComponent],

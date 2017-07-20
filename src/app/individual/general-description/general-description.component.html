@@ -8,7 +8,7 @@
 
 
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="20px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Şirket"  [(ngModel)]="item.company">
+      <md-select fxFlex="25" placeholder="Şirket" name="company"  [(ngModel)]="item.company">
         <md-option *ngFor="let c of companies"  [value]="c">{{ c.name}}
         </md-option>
       </md-select>
