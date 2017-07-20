@@ -1,8 +1,21 @@
 language: node_js
 node_js:
   - "7"
+branches:
+  only:
+    - master
+language: objective-c
 addons:
   chrome: beta
 before_install:
   - # start your web application and listen on `localhost`
   - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
+
+notifications:
+  email:
+    recipients:
+    - cagriboz@borusan.com
+    - secavdar@borusan.com
+    - okanbur@borusan.com
+    on_failure: always
+    on_success: change
