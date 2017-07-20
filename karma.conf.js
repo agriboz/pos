@@ -30,17 +30,13 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     singleRun: false,
     desiredCapabilities: {
-      browserName: process.env.BROWSER || 'chrome',
+      browserName: process.env.BROWSER || 'Chrome',
       chromeOptions: {
         args: [
           // '--enable-logging',
           '--headless',
           '--no-sandbox',
         ],
-        prefs: {
-          'download.default_directory': __dirname + '/tmp/test/download',
-          'download.prompt_for_download': false,
-        },
       },
     },
   });
