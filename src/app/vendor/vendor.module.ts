@@ -1,0 +1,31 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '@angular/material'
+
+import { VendorRoutingModule } from './vendor-routing.module';
+import { VendorComponent } from './vendor.component';
+import { DescriptionComponent } from '../shared/components/description/description.component';
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
+import { SupplierComponent } from '../shared/components/supplier/supplier.component';
+import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
+
+@NgModule({
+  imports: [
+    FlexLayoutModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    VendorRoutingModule
+  ],
+  declarations: [
+    VendorComponent, 
+    DescriptionComponent, 
+    InvoiceDetailComponent,
+    SupplierComponent,
+    InvoiceItemComponent
+  ]
+})
+export class VendorModule { }

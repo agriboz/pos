@@ -1,0 +1,38 @@
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Fatura Bilgileri</div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-input-container>
+        <input mdInput placeholder="Fatura Numarası" [value]="item.invoiceNumber" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Fatura Tarihi" [value]="item.invoiceDate" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Ödeme Tarihi" [value]="item.paymentDate" disabled />
+      </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-input-container>
+        <input mdInput placeholder="Çeviri Kuru" [value]="item.currencyRate" />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Özel İletişim Vergisi" [value]="item.communicationTaxAmount" disabled />
+      </md-input-container>
+      <md-input-container>
+        <textarea mdInput placeholder="Açıklama" [value]="item.description"></textarea>
+      </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-select fxFlex="25" placeholder="Stopaj Hesabı">
+        <md-option *ngFor="let s of stoppageAccounts" [value]="s.id">{{ s.name }}
+        </md-option>
+      </md-select>
+      <md-input-container>
+        <input mdInput placeholder="Tevkifat Tutarı" [value]="item.withHoldingAmount" />
+      </md-input-container>
+    </div>
+  </div>
+</div>

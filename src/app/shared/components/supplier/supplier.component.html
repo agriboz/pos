@@ -1,3 +1,26 @@
-<p>
-  supplier works!
-</p>
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Satıcı Bilgileri</div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-input-container>
+        <input mdInput placeholder="Satıcı Adı" [value]="item.name" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Muhasebe Kodu" [value]="item.accountNumber" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Vade" [value]="item.expiry" disabled />
+      </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-input-container>
+        <input mdInput placeholder="Vergi Dairesi" [value]="item.taxOffice" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Vergi No" [value]="item.taxNumber" disabled />
+      </md-input-container>
+    </div>
+  </div>
+</div>

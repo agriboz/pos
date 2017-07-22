@@ -1,0 +1,34 @@
+<div class="component-container">
+    <div class="form-viewer-wrapper">
+        <div class="form-viewer-title">
+            <div class="form-viewer-title-spacer">Genel Bilgiler</div>
+        </div>
+
+        <app-description [companies]="companies"
+                         [currencies]="currencies"
+                         [item]="item"
+                         (onCompanyChanged)="companyChanged($event)">
+        </app-description>
+
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+            <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department">
+                <md-option *ngFor="let d of departments" [value]="d">{{ d.name }}
+                </md-option>
+            </md-select>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+            <md-input-container>
+                <input mdInput placeholder="Toplam Tutar" [value]="item.totalAmount" disabled />
+            </md-input-container>
+        </div>
+    </div>
+</div>
+
+<app-supplier [item]="item.supplier"></app-supplier>
+
+<app-invoice-detail [item]="item" 
+                    [stoppageAccounts]="stoppageAccounts">
+</app-invoice-detail>
+
+<app-invoice-item [item]="item.invoiceItems">
+</app-invoice-item>

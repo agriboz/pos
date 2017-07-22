@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Supplier } from '../../models/supplier.model';
 
 @Component({
   selector: 'app-supplier',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./supplier.component.css']
 })
 export class SupplierComponent implements OnInit {
+
+  @Input() item: Supplier = new Supplier();
 
   constructor() { }
 

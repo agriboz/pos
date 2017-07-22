@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Company } from '../../shared/company.model'
+import { CommonList } from '../../shared/models/common-list.model'
 import { DataserviceService } from '../../shared/dataservice.service'
 import 'rxjs/add/operator/map'
 
@@ -12,9 +12,9 @@ import 'rxjs/add/operator/map'
 })
 export class GeneralDescriptionComponent implements OnInit {
 
-  @Input() companies: Company
-  @Input() currencies: Company
-  @Input() paymentReasons: Company
+  @Input() companies: CommonList
+  @Input() currencies: CommonList
+  @Input() paymentReasons: CommonList
   @Input() item
 
 

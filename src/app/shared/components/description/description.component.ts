@@ -1,5 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+
 import { CommonList } from '../../models/common-list.model';
+import { Description } from '../../models/description.model';
 
 @Component({
   selector: 'app-description',
@@ -8,10 +10,9 @@ import { CommonList } from '../../models/common-list.model';
 })
 export class DescriptionComponent implements OnInit {
 
-  @Input() item;
+  @Input() item: Description = new Description();
   @Input() companies: CommonList[] = [];
   @Input() currencies: CommonList[] = [];
-  @Input() referenceNumber: number;
   @Output() onCompanyChanged: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

@@ -1,5 +1,4 @@
-export class Company {
+export class CommonList {
     id: number;
     name: string;
 }
-

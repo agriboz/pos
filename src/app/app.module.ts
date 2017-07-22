@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IndividualModule } from './individual/individual.module';
+import { VendorModule } from './vendor/vendor.module';
 import { DataserviceService } from './shared/dataservice.service';
 import { HttpInterceptorService } from './shared/http-interceptor.service';
 import { httpService } from './http.service';
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     BrowserAnimationsModule,
     IndividualModule,
+    VendorModule
   ],
   exports: [],
   providers: [

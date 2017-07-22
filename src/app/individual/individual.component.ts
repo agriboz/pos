@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
-import { Company } from '../shared/company.model';
+import { CommonList } from '../shared/models/common-list.model';
 import { DataserviceService } from '../shared/dataservice.service'
 import 'rxjs/add/operator/map'
 
@@ -15,9 +15,9 @@ import 'rxjs/add/operator/map'
 export class IndividualComponent implements OnInit {
   myState: Object = {};
   private item: Object = {};
-  private paymentReasons: Company[] = [];
-  private companies: Company[] = [];
-  private currencies: Company[] = [];
+  private paymentReasons: CommonList[] = [];
+  private companies: CommonList[] = [];
+  private currencies: CommonList[] = [];
   constructor(private dataservice: DataserviceService) {}
 
   ngOnInit() {
