@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MdSort } from '@angular/material';
 
 import { InvoiceItem } from '../../shared/models/invoice-item.model';
 
