@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@angular/material'
 
+import { CdkTableModule } from '@angular/cdk';
+import {DataSource} from '@angular/cdk';
+
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorComponent } from './vendor.component';
 import { DescriptionComponent } from '../shared/components/description/description.component';
@@ -18,14 +21,18 @@ import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    VendorRoutingModule
+    VendorRoutingModule,
+    CdkTableModule,
+
+
   ],
   declarations: [
-    VendorComponent, 
-    DescriptionComponent, 
+    VendorComponent,
+    DescriptionComponent,
     InvoiceDetailComponent,
     SupplierComponent,
-    InvoiceItemComponent
+    InvoiceItemComponent,
+
   ]
 })
 export class VendorModule { }

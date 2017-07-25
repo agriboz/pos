@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+
 import { CommonList } from '../shared/models/common-list.model'
 import { StringCommonList } from '../shared/models/string-common-list.model'
+import { VendorPayment } from '../shared/models/vendor-payment.model'
 
 import 'rxjs/add/operator/toPromise';
 
@@ -86,6 +88,12 @@ export class DataserviceService {
   getTaxGroups(companyId: number): Observable<CommonList[]> {
     return this.http.get('taxGroups?companyId=' + companyId).map((response: Response) => {
       return <CommonList[]>response.json().data;
+    }).catch(this.handleError)
+  }
+
+  getVendorPayments(eInvoiceId: number): Observable<CommonList[]> {
+    return this.http.get('transform?eInvoiceId=' + eInvoiceId).map((response: Response) => {
+      return <VendorPayment[]>response.json().data;
     }).catch(this.handleError)
   }
 

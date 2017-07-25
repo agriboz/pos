@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
@@ -12,6 +13,9 @@ import { VendorModule } from './vendor/vendor.module';
 import { DataserviceService } from './shared/dataservice.service';
 import { HttpInterceptorService } from './shared/http-interceptor.service';
 import { httpService } from './http.service';
+import { CdkTableModule } from '@angular/cdk';
+import { ToastrService } from './shared/toastr.service';
+
 
 const appRoutes: Routes = [
   {
@@ -34,16 +38,19 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     BrowserAnimationsModule,
     IndividualModule,
-    VendorModule
+    VendorModule,
+    CdkTableModule,
+
   ],
   exports: [],
   providers: [
     DataserviceService,
     HttpInterceptorService,
+    ToastrService,
     {
       provide: Http,
       useFactory: httpService,
-      deps: [XHRBackend, RequestOptions],
+      deps: [XHRBackend, RequestOptions, ToastrService],
     },
   ],
   bootstrap: [AppComponent],

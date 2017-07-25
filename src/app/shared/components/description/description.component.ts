@@ -1,7 +1,9 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 
+import { Observable } from 'rxJs/Rx'
 import { CommonList } from '../../models/common-list.model';
 import { Description } from '../../models/description.model';
+import { VendorPayment } from '../../models/vendor-payment.model'
 
 @Component({
   selector: 'app-description',
@@ -9,8 +11,7 @@ import { Description } from '../../models/description.model';
   styleUrls: ['./description.component.css']
 })
 export class DescriptionComponent implements OnInit {
-
-  @Input() item: Description = new Description();
+  @Input() item;
   @Input() companies: CommonList[] = [];
   @Input() currencies: CommonList[] = [];
   @Output() onCompanyChanged: EventEmitter<any> = new EventEmitter();
@@ -22,6 +23,7 @@ export class DescriptionComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }

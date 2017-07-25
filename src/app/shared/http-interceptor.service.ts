@@ -9,6 +9,7 @@ import {
   Headers,
 } from '@angular/http';
 
+import { ToastrService } from './toastr.service'
 import { MdSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Rx';
@@ -17,12 +18,14 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 
-
 export class HttpInterceptorService extends Http {
-  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
 
+  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, private toastr: ToastrService ) {
     super(backend, defaultOptions);
+
   }
+
+
 
   request(
     url: string | Request,
@@ -31,23 +34,19 @@ export class HttpInterceptorService extends Http {
     return super.request(url, options).catch(this.catchErrors());
   }
 
-  private catchErrors() {
+  catchErrors() {
     return (res: Response) => {
       console.log(res);
-      if (res.status === 401 || res.status === 403 ||  res.status === 0) {
-        console.log('Error_Token_Expired: redirecting to login.');
+      if (res.status === 401) {
+         this.toastr.showToaster(res.statusText);
+         return Observable.throw(res);
       }
       return Observable.throw(res);
     };
   }
 
-  public snackBarMethod() {
-
-  }
-
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
     url = this.updateUrl(url);
-    console.log(url);
     return super.get(url, this.getRequestOptionArgs(options));
   }
 
@@ -88,6 +87,9 @@ export class HttpInterceptorService extends Http {
       options.headers = new Headers();
     }
     options.headers.append('Content-Type', 'application/json');
+
+    options = new RequestOptions({withCredentials: true})
     return options;
   }
 }
+
