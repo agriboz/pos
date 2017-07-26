@@ -91,9 +91,9 @@ export class DataserviceService {
     }).catch(this.handleError)
   }
 
-  getVendorPayments(eInvoiceId: number): Observable<CommonList[]> {
+  getVendorPayments(eInvoiceId: number): Observable<VendorPayment> {
     return this.http.get('transform?eInvoiceId=' + eInvoiceId).map((response: Response) => {
-      return <VendorPayment[]>response.json().data;
+      return <VendorPayment>response.json().data;
     }).catch(this.handleError)
   }
 

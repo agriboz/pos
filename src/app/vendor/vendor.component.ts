@@ -15,27 +15,29 @@ import { InvoiceItem } from '../shared/models/invoice-item.model';
 })
 export class VendorComponent implements OnInit {
 
-  item = {}
-  companies: CommonList[] = [];
-  currencies: CommonList[] = [];
-  /* private departments: StringCommonList[] = [];
+  private item: VendorPayment = new VendorPayment();
+  private companies: CommonList[] = [];
+  private currencies: CommonList[] = [];
+  private departments: StringCommonList[] = [];
   private stoppageAccounts: CommonList[] = [];
-  private referenceNumbers: Map<number, number> = new Map<number, number>(); */
+  private referenceNumbers: Map<number, number> = new Map<number, number>(); 
 
   constructor(private dataservice: DataserviceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    const eInvoiceId = this.activatedRoute.snapshot.params.id;
+/*    const eInvoiceId = this.activatedRoute.snapshot.params.id;
     this.getCompanies();
     this.getCurrencies();
-    this.getVendorPayments(eInvoiceId)
-    /* this.getDepartments(); */
+    this.getDepartments();*/
+
+    //if (eInvoiceId) {
+      this.getVendorPayments(485);
+    //}
   }
 
   getCompanies() {
     this.dataservice
       .getCompanies()
-      .delay(5000)
       .subscribe(data => this.companies = data);
   }
 
@@ -45,7 +47,7 @@ export class VendorComponent implements OnInit {
       .subscribe(data => this.currencies = data);
   }
 
-  /* getReferenceNumber(companyId: number) {
+   getReferenceNumber(companyId: number) {
     this.dataservice
       .getReferenceNumber(4, companyId)
       .subscribe(data => {
@@ -64,14 +66,18 @@ export class VendorComponent implements OnInit {
     this.dataservice
       .getDepartments()
       .subscribe(data => this.departments = data);
-  } */
+  } 
 
   getVendorPayments(eInvoiceId) {
-    this.dataservice.getVendorPayments(eInvoiceId)
-      .subscribe(data => this.item = data);
+    this.dataservice
+      .getCompanies()
+      .map(data => this.companies = data)
+      .flatMap(res2 => this.dataservice.getCurrencies().map(x => this.currencies = x))
+      .flatMap(res3 => this.dataservice.getVendorPayments(eInvoiceId).map(x => this.item = x))
+      .subscribe();
   }
 
-  /* companyChanged(e) {
+  companyChanged(e) {
     const companyId = e.value;
 
     if (this.referenceNumbers.has(companyId)) {
@@ -81,5 +87,5 @@ export class VendorComponent implements OnInit {
     }
 
     this.getStoppageAccounts(companyId);
-  } */
+  } 
 }

@@ -1,11 +1,11 @@
 <form fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-  <md-select fxFlex="25" placeholder="Şirket"  name="company" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.company" (change)="companyChanged($event)">
+  <md-select fxFlex="25" placeholder="Şirket"  name="company" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.company.id" (change)="companyChanged($event)">
     <md-option *ngFor="let c of companies"  [value]="c.id">{{ c.name }}
     </md-option>
   </md-select>
-  <pre>{{item.company | json}}</pre>
-  <md-select fxFlex="25" placeholder="Para Birimi" name="currency" [(ngModel)]="item.currency">
-    <md-option *ngFor="let c of currencies" [value]="c">{{ c.name }}
+  <!--<pre>{{item.company | json}}</pre>-->
+  <md-select fxFlex="25" placeholder="Para Birimi" name="currency" [(ngModel)]="item.currency.id">
+    <md-option *ngFor="let c of currencies" [value]="c.id">{{ c.name }}
     </md-option>
   </md-select>
   <md-input-container>

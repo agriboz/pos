@@ -4,7 +4,7 @@ import { VendorComponent } from './vendor.component';
 
 const routes: Routes = [
   {
-    path: 'vendor/:id',
+    path: 'vendor',
     component: VendorComponent
   }
 ];
