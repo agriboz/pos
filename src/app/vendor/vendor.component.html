@@ -16,6 +16,11 @@
                 <md-option *ngFor="let d of departments" [value]="d">{{ d.name }}
                 </md-option>
             </md-select>
+            <div>Aktarım Türü</div>
+            <md-radio-group [(ngModel)]="item.isManuel">
+                <md-radio-button [value]="false">Otomatik</md-radio-button>
+                <md-radio-button [value]="true">Manuel</md-radio-button>
+            </md-radio-group>
         </div>
         <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
             <md-input-container>
@@ -31,5 +36,6 @@
                     [stoppageAccounts]="stoppageAccounts">
 </app-invoice-detail>
 
-<!--<app-invoice-item>
-</app-invoice-item>-->
+<app-invoice-item [item]="item.invoiceItems"
+                  (onAddDistribution)="addDistribution($event)">
+</app-invoice-item>

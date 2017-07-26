@@ -1,5 +1,5 @@
-<form fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-  <md-select fxFlex="25" placeholder="Şirket"  name="company" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.company.id" (change)="companyChanged($event)">
+<div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+  <md-select fxFlex="25" placeholder="Şirket"  name="company" [(ngModel)]="item.company.id" (change)="companyChanged($event)">
     <md-option *ngFor="let c of companies"  [value]="c.id">{{ c.name }}
     </md-option>
   </md-select>
@@ -11,4 +11,4 @@
   <md-input-container>
     <input mdInput placeholder="Referans Numarası" [value]="item.referenceNumber" disabled />
   </md-input-container>
-</form>
+</div>

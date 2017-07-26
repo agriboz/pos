@@ -13,6 +13,7 @@ import { DescriptionComponent } from '../shared/components/description/descripti
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 import { SupplierComponent } from '../shared/components/supplier/supplier.component';
 import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
+import { DistributionComponent } from './distribution/distribution.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,9 @@ import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
     CommonModule,
     VendorRoutingModule,
     CdkTableModule,
-
-
+  ],
+  entryComponents: [
+    DistributionComponent
   ],
   declarations: [
     VendorComponent,
@@ -32,7 +34,7 @@ import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
     InvoiceDetailComponent,
     SupplierComponent,
     InvoiceItemComponent,
-
+    DistributionComponent,
   ]
 })
 export class VendorModule { }

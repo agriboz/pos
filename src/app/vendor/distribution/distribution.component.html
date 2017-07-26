@@ -1,0 +1,44 @@
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Dağıtım Kalemi</div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <div>Dağıtım Türü</div>
+      <md-radio-group [(ngModel)]="item.isInternal">
+        <md-radio-button [value]="true">Şirket İçi</md-radio-button>
+        <md-radio-button [value]="false">Şirket Dışı</md-radio-button>
+      </md-radio-group>
+    </div>
+    <div *ngIf="!item.isInternal" fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-select fxFlex="25" placeholder="Hesap" name="account" [(ngModel)]="item.account.id">
+        <md-option *ngFor="let e of externalAccounts" [value]="e.id">{{ e.name }}
+        </md-option>
+      </md-select>
+      <md-input-container>
+        <input mdInput placeholder="Adet" [value]="item.quantity" />
+      </md-input-container>
+    </div>
+    <div *ngIf="item.isInternal">
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+        <md-select fxFlex="25" placeholder="Masraf Yeri" name="costCenter" [(ngModel)]="item.costCenter.id" (change)="costCenterChanged($event)">
+          <md-option *ngFor="let c of costCenters" [value]="c.id">{{ c.name }}
+          </md-option>
+        </md-select>
+        <md-select fxFlex="25" placeholder="Hesap" name="account" [(ngModel)]="item.account.id">
+          <md-option *ngFor="let i of internalAccounts" [value]="i.id">{{ i.name }}
+          </md-option>
+        </md-select>
+        <md-select fxFlex="25" placeholder="İç Sipariş" name="internalOrder" [(ngModel)]="item.internalOrder.id">
+          <md-option *ngFor="let i of internalOrders" [value]="i.id">{{ i.name }}
+          </md-option>
+        </md-select>
+      </div>
+      <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+        <md-input-container>
+          <input mdInput placeholder="Adet" [value]="item.quantity" />
+        </md-input-container>
+      </div>
+    </div>
+  </div>
+</div>

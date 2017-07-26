@@ -11,6 +11,7 @@ import { VendorPayment } from '../../models/vendor-payment.model'
   styleUrls: ['./description.component.css']
 })
 export class DescriptionComponent implements OnInit {
+  
   @Input() item;
   @Input() companies: CommonList[] = [];
   @Input() currencies: CommonList[] = [];
