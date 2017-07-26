@@ -28,3 +28,9 @@ body {
 .form-viewer-body {
   padding: 30px;
 }
+
+snack-bar-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
