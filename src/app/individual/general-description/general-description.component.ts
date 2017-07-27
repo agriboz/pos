@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { CommonList } from '../../shared/models/common-list.model'
-import { DataserviceService } from '../../shared/dataservice.service'
+import { DataService } from '../../shared/services/data.service'
 import 'rxjs/add/operator/map'
 
 
@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
   selector: 'app-general-description',
   templateUrl: './general-description.component.html',
   styleUrls: ['./general-description.component.css'],
-  providers: [DataserviceService]
+  providers: [DataService]
 })
 export class GeneralDescriptionComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class GeneralDescriptionComponent implements OnInit {
 
   // companies: Company[] = [];
 
-  constructor(private dataserviceService: DataserviceService) { }
+  constructor(private dataserviceService: DataService) { }
 
   ngOnInit() {
     // this.getCompany();

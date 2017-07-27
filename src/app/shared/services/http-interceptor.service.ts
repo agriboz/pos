@@ -13,7 +13,7 @@ import { ToastrService } from './toastr.service'
 import { MdSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Rx';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { CommonList } from './common-list.model';
+import { CommonList, DistributionDetail } from './index';
 
 export class InvoiceItem {
     id: number;
@@ -6,4 +6,6 @@ export class InvoiceItem {
     taxGroup: CommonList = new CommonList();
     taxAmount: number;
     amount: number;
+    isVisible: boolean = false;
+    distributionDetails: DistributionDetail[] = [];
 }

@@ -5,7 +5,13 @@ import { VendorComponent } from './vendor.component';
 const routes: Routes = [
   {
     path: 'vendor/:id',
-    component: VendorComponent
+    component: VendorComponent,
+    data: { isTransform: false }
+  },
+  {
+    path: 'vendor/transform/:id',
+    component: VendorComponent,
+    data: { isTransform: true }
   }
 ];
 

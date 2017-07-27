@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+
 import { DistributionComponent } from './distribution/distribution.component';
 
-import { VendorPayment } from '../shared/models/vendor-payment.model';
-import { CommonList } from '../shared/models/common-list.model';
-import { StringCommonList } from '../shared/models/string-common-list.model';
-import { DataserviceService } from '../shared/dataservice.service'
-import { InvoiceItem } from '../shared/models/invoice-item.model';
-import { DistributionDetail } from '../shared/models/distribution-detail.model';
+import {
+  VendorPayment,
+  CommonList,
+  StringCommonList,
+  InvoiceItem,
+  DistributionDetail
+} from '../shared/models';
+
+import {
+  DataService,
+  DialogService
+} from '../shared/services';
 
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendor.component.html',
   styleUrls: ['./vendor.component.css'],
-  providers: [DataserviceService],
+  providers: [DataService]
 })
 export class VendorComponent implements OnInit {
 
@@ -30,14 +36,20 @@ export class VendorComponent implements OnInit {
   private internalOrders: CommonList[] = [];
   private referenceNumbers: Map<number, number> = new Map<number, number>();
 
-  constructor(private dataservice: DataserviceService, private activatedRoute: ActivatedRoute, private dialog: MdDialog) { }
+  constructor(private dataservice: DataService
+            , private dialogservice: DialogService
+            , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    const eInvoiceId = this.activatedRoute.snapshot.params.id;
-    if (eInvoiceId) {
+    const isTransform: boolean = this.activatedRoute.snapshot.data['isTransform'];
+    
+    if (isTransform) {
+      const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
       this.getVendorPayments(eInvoiceId);
     }
     else {
+      const id: number = this.activatedRoute.snapshot.params.id;
+
       this.getCompanies();
       this.getCurrencies();
       this.getDepartments();
@@ -87,27 +99,16 @@ export class VendorComponent implements OnInit {
   }
 
   addDistribution(e) {
-    const invoiceItemId = e.value;
+    const invoiceItem: InvoiceItem = e;
+    const companyId: number = this.item.company.id;
 
-    this.dataservice
-      .getAccounts(this.item.company.id, true)
-      .map(data => this.internalAccounts = data)
-      .flatMap(data => this.dataservice.getAccounts(this.item.company.id, false).map(x => this.externalAccounts = x))
-      .flatMap(data => this.dataservice.getCostCenters(this.item.company.id).map(x => this.costCenters = x))
+    this.dialogservice
+      .addDistribution(companyId, invoiceItem.id)
       .subscribe(data => {
-        let dialogRef = this.dialog.open(DistributionComponent);
-        dialogRef.componentInstance.item = new DistributionDetail();
-        dialogRef.componentInstance.costCenters = this.costCenters;
-        dialogRef.componentInstance.internalAccounts = this.internalAccounts;
-        dialogRef.componentInstance.externalAccounts = this.externalAccounts;
-        dialogRef.componentInstance
-          .onCostCenterChanged
-          .flatMap(data => this.dataservice.getInternalOrders(data.value).map(x => this.internalOrders = x))
-          .subscribe(e => dialogRef.componentInstance.internalOrders = this.internalOrders);
+        if (!invoiceItem.distributionDetails)
+          invoiceItem.distributionDetails = [];
 
-        dialogRef.afterClosed().subscribe(result => {
-
-        });
+        invoiceItem.distributionDetails.push(data);
       });
   }
 

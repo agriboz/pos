@@ -4,16 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@angular/material'
 
-import { CdkTableModule } from '@angular/cdk';
-import {DataSource} from '@angular/cdk';
-
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorComponent } from './vendor.component';
 import { DescriptionComponent } from '../shared/components/description/description.component';
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 import { SupplierComponent } from '../shared/components/supplier/supplier.component';
-import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
 import { DistributionComponent } from './distribution/distribution.component';
+import { DialogService } from '../shared/services/dialog.service';
+import { CollapsibleWellComponent } from './collapsible-well/collapsible-well.component';
+import { DistributionGridComponent } from './distribution-grid/distribution-grid.component';
 
 @NgModule({
   imports: [
@@ -23,18 +22,21 @@ import { DistributionComponent } from './distribution/distribution.component';
     ReactiveFormsModule,
     CommonModule,
     VendorRoutingModule,
-    CdkTableModule,
   ],
   entryComponents: [
     DistributionComponent
+  ],
+  providers: [
+    DialogService
   ],
   declarations: [
     VendorComponent,
     DescriptionComponent,
     InvoiceDetailComponent,
     SupplierComponent,
-    InvoiceItemComponent,
     DistributionComponent,
+    CollapsibleWellComponent,
+    DistributionGridComponent
   ]
 })
 export class VendorModule { }

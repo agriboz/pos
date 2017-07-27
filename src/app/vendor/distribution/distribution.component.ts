@@ -1,8 +1,10 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
-import { DistributionDetail } from '../../shared/models/distribution-detail.model';
-import { CommonList } from '../../shared/models/common-list.model';
+import { 
+  DistributionDetail,
+  CommonList
+} from '../../shared/models/index';
 
 @Component({
   selector: 'app-distribution',

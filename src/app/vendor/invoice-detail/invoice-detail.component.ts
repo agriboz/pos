@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { VendorPayment } from '../../shared/models/vendor-payment.model';
-import { CommonList } from '../../shared/models/common-list.model';
+import {
+  VendorPayment,
+  CommonList
+ } from '../../shared/models/index';
 
 @Component({
   selector: 'app-invoice-detail',

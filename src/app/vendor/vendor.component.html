@@ -36,6 +36,6 @@
                     [stoppageAccounts]="stoppageAccounts">
 </app-invoice-detail>
 
-<app-invoice-item [item]="item.invoiceItems"
-                  (onAddDistribution)="addDistribution($event)">
-</app-invoice-item>
+<app-collapsible-well [invoiceItems]="item.invoiceItems" 
+                      (onAddDistribution)="addDistribution($event)">
+</app-collapsible-well>

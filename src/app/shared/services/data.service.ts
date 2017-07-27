@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { CommonList } from '../shared/models/common-list.model'
-import { StringCommonList } from '../shared/models/string-common-list.model'
-import { VendorPayment } from '../shared/models/vendor-payment.model'
+import { CommonList } from '../models/common-list.model'
+import { StringCommonList } from '../models/string-common-list.model'
+import { VendorPayment } from '../models/vendor-payment.model'
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class DataserviceService {
+export class DataService {
 
   constructor(private http: Http) { }
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InvoiceItemComponent } from './invoice-item.component';
+import { CollapsibleWellComponent } from './collapsible-well.component';
 
-describe('InvoiceItemComponent', () => {
-  let component: InvoiceItemComponent;
-  let fixture: ComponentFixture<InvoiceItemComponent>;
+describe('CollapsibleWellComponent', () => {
+  let component: CollapsibleWellComponent;
+  let fixture: ComponentFixture<CollapsibleWellComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InvoiceItemComponent ]
+      declarations: [ CollapsibleWellComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InvoiceItemComponent);
+    fixture = TestBed.createComponent(CollapsibleWellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,12 +10,12 @@ import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IndividualModule } from './individual/individual.module';
 import { VendorModule } from './vendor/vendor.module';
-import { DataserviceService } from './shared/dataservice.service';
-import { HttpInterceptorService } from './shared/http-interceptor.service';
+import { DataService } from './shared/services/data.service';
+import { HttpInterceptorService } from './shared/services/http-interceptor.service';
 import { httpService } from './http.service';
 import { CdkTableModule } from '@angular/cdk';
-import { ToastrService } from './shared/toastr.service';
-
+import { ToastrService } from './shared/services/toastr.service';
+import { DialogService } from './shared/services/dialog.service';
 
 const appRoutes: Routes = [
   {
@@ -44,7 +44,7 @@ const appRoutes: Routes = [
   ],
   exports: [],
   providers: [
-    DataserviceService,
+    DataService,
     HttpInterceptorService,
     ToastrService,
     {

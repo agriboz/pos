@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Hesap</th>
+      <th>Masraf Yeri</th>
+      <th>İç Sipariş</th>
+      <th>Adet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of distributionDetails">
+      <td>{{ d.account.name }}</td>
+      <td>{{ d.costCenter.name }}</td>
+      <td>{{ d.internalOrder.name }}</td>
+      <td>{{ d.quantity }}</td>
+    </tr>
+  </tbody>
+</table>
