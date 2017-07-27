@@ -105,10 +105,12 @@ export class VendorComponent implements OnInit {
     this.dialogservice
       .addDistribution(companyId, invoiceItem.id)
       .subscribe(data => {
-        if (!invoiceItem.distributionDetails)
-          invoiceItem.distributionDetails = [];
+        if (data) {
+          if (!invoiceItem.distributionDetails)
+            invoiceItem.distributionDetails = [];
 
-        invoiceItem.distributionDetails.push(data);
+          invoiceItem.distributionDetails = [...invoiceItem.distributionDetails, data];
+        }
       });
   }
 

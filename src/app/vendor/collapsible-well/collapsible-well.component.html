@@ -1,9 +1,33 @@
-<div *ngFor="let i of invoiceItems" (click)="toggleContent(i)">
-  <h5>{{ i.description }} (%{{ i.taxGroup.name }}) 
-    | {{ i.taxAmount }} 
-    | {{ i.amount }} 
-    <button md-raised-button (click)="addDistribution(i)">Dağıtım Kalemi Ekle</button></h5>
-  <div *ngIf="i.isVisible">
-    <app-distribution-grid [distributionDetails]="i.distributionDetails"></app-distribution-grid>
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Fatura Kalemleri</div>
+    </div>
+    <div class="form-viewer-body">
+      <div fxLayout="column">
+        <div fxLayout="row">
+          <div fxFlex>Açıklama</div>
+          <div fxFlex>Vergi Tutarı</div>
+          <div fxFlex>Matrah</div>
+          <div fxFlex></div>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div *ngFor="let i of invoiceItems" (click)="toggleContent(i)">
+          <div fxLayout="column">
+            <div fxLayout="row">
+              <div fxFlex>{{ i.description }} (%{{ i.taxGroup.name }})</div>
+              <div fxFlex>{{ i.taxAmount }}</div>
+              <div fxFlex>{{ i.amount }}</div>
+              <div fxFlex><button md-raised-button (click)="addDistribution(i)">Dağıtım Kalemi Ekle</button></div>
+            </div>
+          </div>
+          <div fxLayout="column" *ngIf="i.isVisible">
+            <app-distribution-grid [distributionDetails]="i.distributionDetails">
+            </app-distribution-grid>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

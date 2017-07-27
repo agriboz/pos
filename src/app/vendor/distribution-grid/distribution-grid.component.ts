@@ -16,6 +16,8 @@ export class DistributionGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!this.distributionDetails)
+      this.distributionDetails = []; 
   }
 
 }

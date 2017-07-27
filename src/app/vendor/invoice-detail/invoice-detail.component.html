@@ -8,10 +8,10 @@
         <input mdInput placeholder="Fatura Numarası" [value]="item.invoiceNumber" disabled />
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Fatura Tarihi" [value]="item.invoiceDate" disabled />
+        <input mdInput placeholder="Fatura Tarihi" [value]="item.invoiceDate | date: 'dd.MM.yyyy'" disabled />
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Ödeme Tarihi" [value]="item.paymentDate" disabled />
+        <input mdInput placeholder="Ödeme Tarihi" [value]="item.paymentDate | date: 'dd.MM.yyyy'" disabled />
       </md-input-container>
     </div>
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">

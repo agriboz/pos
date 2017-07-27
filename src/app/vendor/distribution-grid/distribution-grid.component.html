@@ -1,18 +1,18 @@
-<table>
+<table class="mat-table" *ngIf="!!distributionDetails.length">
   <thead>
-    <tr>
-      <th>Hesap</th>
-      <th>Masraf Yeri</th>
-      <th>İç Sipariş</th>
-      <th>Adet</th>
+    <tr class="mat-header-row">
+      <th class="mat-header-cell">Hesap</th>
+      <th class="mat-header-cell">Masraf Yeri</th>
+      <th class="mat-header-cell">İç Sipariş</th>
+      <th class="mat-header-cell">Adet</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of distributionDetails">
-      <td>{{ d.account.name }}</td>
-      <td>{{ d.costCenter.name }}</td>
-      <td>{{ d.internalOrder.name }}</td>
-      <td>{{ d.quantity }}</td>
+    <tr *ngFor="let d of distributionDetails" class="mat-row">
+      <td class="mat-cell">{{ d.account.name }}</td>
+      <td class="mat-cell">{{ d.costCenter.name }}</td>
+      <td class="mat-cell">{{ d.internalOrder.name }}</td>
+      <td class="mat-cell">{{ d.quantity }}</td>
     </tr>
   </tbody>
 </table>
