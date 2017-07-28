@@ -8,6 +8,7 @@ export class VendorPayment {
   code: number;
   company: CommonList = new CommonList();
   currency: CommonList = new CommonList();
+  stoppageAccount: CommonList = new CommonList();
   department: StringCommonList = new StringCommonList();
   referenceNumber: number;
   invoiceDate: Date;
