@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DistributionComponent } from './distribution/distribution.component';
+import { ToastrService } from '../shared/services/toastr.service'
 
 import {
   VendorPayment,
@@ -38,11 +39,11 @@ export class VendorComponent implements OnInit {
 
   constructor(private dataservice: DataService
             , private dialogservice: DialogService
-            , private activatedRoute: ActivatedRoute) { }
+            , private activatedRoute: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit() {
     const isTransform: boolean = this.activatedRoute.snapshot.data['isTransform'];
-    
+
     if (isTransform) {
       const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
       this.getVendorPayments(eInvoiceId);
@@ -109,6 +110,7 @@ export class VendorComponent implements OnInit {
             invoiceItem.distributionDetails = [];
 
           invoiceItem.distributionDetails = [...invoiceItem.distributionDetails, data];
+          this.toastr.showToaster('İşlem Başarılı');
         }
       });
   }
@@ -132,7 +134,7 @@ export class VendorComponent implements OnInit {
   save() {
 
   }
-  
+
   approve() {
 
   }
