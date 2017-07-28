@@ -98,8 +98,7 @@ export class VendorComponent implements OnInit {
       .subscribe();
   }
 
-  addDistribution(e) {
-    const invoiceItem: InvoiceItem = e;
+  addDistribution(invoiceItem: InvoiceItem) {
     const companyId: number = this.item.company.id;
 
     this.dialogservice
@@ -124,5 +123,25 @@ export class VendorComponent implements OnInit {
     }
 
     this.getStoppageAccounts(companyId);
+  }
+
+  saveAndSentApprove() {
+    console.log(this.item);
+  }
+
+  save() {
+
+  }
+  
+  approve() {
+
+  }
+
+  reject() {
+
+  }
+
+  newRecord() {
+
   }
 }
