@@ -91,9 +91,21 @@ export class DataService {
     }).catch(this.handleError)
   }
 
-  getVendorPayments(eInvoiceId: number): Observable<VendorPayment> {
+  getVendorPaymentByEInvoiceId(eInvoiceId: number): Observable<VendorPayment> {
     return this.http.get('transform?eInvoiceId=' + eInvoiceId).map((response: Response) => {
       return <VendorPayment>response.json().data;
+    }).catch(this.handleError)
+  }
+
+  getVendorPaymentById(id: number): Observable<VendorPayment> {
+    return this.http.get(id.toString()).map((response: Response) => {
+      return <VendorPayment>response.json().data;
+    }).catch(this.handleError)
+  }
+
+  posVendorPayment(vendorPayment: VendorPayment) {
+    return this.http.post('', vendorPayment).map((response: Response) => {
+      return response.json().data;
     }).catch(this.handleError)
   }
 

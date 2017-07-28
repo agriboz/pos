@@ -45,13 +45,12 @@ export class VendorComponent implements OnInit {
     
     if (isTransform) {
       const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
-      this.getVendorPayments(eInvoiceId);
+      this.getVendorPaymentByEInvoiceId(eInvoiceId);
+      this.getDepartments();
     }
     else {
       const id: number = this.activatedRoute.snapshot.params.id;
-
-      this.getCompanies();
-      this.getCurrencies();
+      this.getVendorPaymentById(id);
       this.getDepartments();
     }
   }
@@ -89,12 +88,21 @@ export class VendorComponent implements OnInit {
       .subscribe(data => this.departments = data);
   }
 
-  getVendorPayments(eInvoiceId) {
+  getVendorPaymentByEInvoiceId(eInvoiceId: number) {
     this.dataservice
       .getCompanies()
       .map(data => this.companies = data)
       .flatMap(data => this.dataservice.getCurrencies().map(x => this.currencies = x))
-      .flatMap(data => this.dataservice.getVendorPayments(eInvoiceId).map(x => this.item = x))
+      .flatMap(data => this.dataservice.getVendorPaymentByEInvoiceId(eInvoiceId).map(x => this.item = x))
+      .subscribe();
+  }
+
+  getVendorPaymentById(id: number) {
+    this.dataservice
+      .getCompanies()
+      .map(data => this.companies = data)
+      .flatMap(data => this.dataservice.getCurrencies().map(x => this.currencies = x))
+      .flatMap(data => this.dataservice.getVendorPaymentById(id).map(x => this.item = x))
       .subscribe();
   }
 
@@ -125,8 +133,10 @@ export class VendorComponent implements OnInit {
     this.getStoppageAccounts(companyId);
   }
 
-  saveAndSentApprove() {
-    console.log(this.item);
+  startFlow() {
+    this.dataservice
+      .posVendorPayment(this.item)
+      .subscribe();
   }
 
   save() {
