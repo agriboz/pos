@@ -1,9 +1,8 @@
-<div class="component-container">
   <div class="form-viewer-wrapper">
     <div class="form-viewer-title">
       <div class="form-viewer-title-spacer">Dağıtım Kalemi</div>
     </div>
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+    <div fxLayout="column" fxLayoutWrap fxLayoutGap="20px" class="form-viewer-body">
       <div>Dağıtım Türü</div>
       <md-radio-group [(ngModel)]="item.isInternal">
         <md-radio-button [value]="true">Şirket İçi</md-radio-button>
@@ -11,7 +10,7 @@
       </md-radio-group>
     </div>
     <div *ngIf="!item.isInternal" fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Hesap" name="account" [(ngModel)]="item.account">
+      <md-select fxFlex placeholder="Hesap" name="account" [(ngModel)]="item.account">
         <md-option *ngFor="let e of externalAccounts" [value]="e">{{ e.name }}
         </md-option>
       </md-select>
@@ -21,26 +20,27 @@
     </div>
     <div *ngIf="item.isInternal">
       <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-        <md-select fxFlex="25" placeholder="Masraf Yeri" name="costCenter" [(ngModel)]="item.costCenter" (change)="costCenterChanged($event)">
+        <md-select fxFlex placeholder="Masraf Yeri" name="costCenter" [(ngModel)]="item.costCenter" (change)="costCenterChanged($event)">
           <md-option *ngFor="let c of costCenters" [value]="c">{{ c.name }}
           </md-option>
         </md-select>
-        <md-select fxFlex="25" placeholder="Hesap" name="account" [(ngModel)]="item.account">
+        <md-select fxFlex placeholder="Hesap" name="account" [(ngModel)]="item.account">
           <md-option *ngFor="let i of internalAccounts" [value]="i">{{ i.name }}
           </md-option>
         </md-select>
-        <md-select fxFlex="25" placeholder="İç Sipariş" name="internalOrder" [(ngModel)]="item.internalOrder">
+        <md-select fxFlex placeholder="İç Sipariş" name="internalOrder" [(ngModel)]="item.internalOrder">
           <md-option *ngFor="let i of internalOrders" [value]="i">{{ i.name }}
           </md-option>
         </md-select>
       </div>
       <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
         <md-input-container>
-          <input mdInput placeholder="Adet" [(ngModel)]="item.quantity" />
+          <input mdInput type="number" placeholder="Adet" [(ngModel)]="item.quantity" />
         </md-input-container>
       </div>
     </div>
-    <button type="button" md-raised-button (click)="dialogRef.close(item)">Ekle</button>
-    <button type="button" md-button (click)="dialogRef.close()">İptal</button>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="form-viewer-body">
+      <button type="button" md-raised-button (click)="dialogRef.close(item)">Ekle</button>
+      <button type="button" md-raised-button (click)="dialogRef.close()">İptal</button>
+    </div>
   </div>
-</div>
