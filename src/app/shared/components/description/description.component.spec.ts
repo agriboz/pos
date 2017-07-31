@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule, NgForm } from '@angular/forms';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
 import { DescriptionComponent } from './description.component';
+import { DataService } from '../../services/data.service'
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('DescriptionComponent', () => {
   let component: DescriptionComponent;
@@ -8,7 +12,9 @@ describe('DescriptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DescriptionComponent ]
+      imports: [ FormsModule, MaterialModule, NoopAnimationsModule, ReactiveFormsModule ],
+      declarations: [DescriptionComponent],
+      providers: [ DataService ]
     })
     .compileComponents();
   }));
@@ -20,6 +26,13 @@ describe('DescriptionComponent', () => {
   });
 
   it('should be created', () => {
-    expect(component).toBeTruthy();
+    const company = [
+      {
+        id: 1,
+        name: 'can'
+      }
+    ];
+    component.ngOnInit();
+    expect(company).toBeTruthy();
   });
 });

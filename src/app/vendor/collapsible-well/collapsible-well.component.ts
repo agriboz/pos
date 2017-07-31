@@ -1,7 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import {
-  InvoiceItem
+  InvoiceItem,
+  DistributionDetail
 } from '../../shared/models';
 
 @Component({
@@ -10,7 +11,6 @@ import {
   styleUrls: ['./collapsible-well.component.css']
 })
 export class CollapsibleWellComponent implements OnInit {
-
   @Input() invoiceItems: InvoiceItem[] = [];
   @Output() onAddDistribution: EventEmitter<any> = new EventEmitter();
 

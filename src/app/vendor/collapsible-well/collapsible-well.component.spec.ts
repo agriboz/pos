@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DistributionGridComponent } from '../distribution-grid/distribution-grid.component'
 
 import { CollapsibleWellComponent } from './collapsible-well.component';
 
@@ -8,7 +9,7 @@ describe('CollapsibleWellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollapsibleWellComponent ]
+      declarations: [DistributionGridComponent, CollapsibleWellComponent],
     })
     .compileComponents();
   }));
