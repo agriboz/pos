@@ -1,4 +1,7 @@
-import { CommonList, DistributionDetail } from './index';
+import { 
+    CommonList, 
+    DistributionDetail 
+} from './index';
 
 export class InvoiceItem {
     id: number;

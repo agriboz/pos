@@ -9,8 +9,8 @@
 
 
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department">
-        <md-option *ngFor="let d of departments" [value]="d">{{ d.name }}
+      <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department.id">
+        <md-option *ngFor="let d of departments" [value]="d.id">{{ d.name }}
         </md-option>
       </md-select>
       <div>Aktarım Türü</div>

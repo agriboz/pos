@@ -1,14 +1,16 @@
-import { CommonList } from './common-list.model';
-import { StringCommonList } from './string-common-list.model';
-import { Supplier } from './supplier.model';
-import { InvoiceItem } from './invoice-item.model';
+import { 
+  CommonList, 
+  StringCommonList, 
+  Supplier, 
+  InvoiceItem 
+} from './index';
 
 export class VendorPayment {
   id: number;
   code: number;
   company: CommonList = new CommonList();
   currency: CommonList = new CommonList();
-  stoppageAccount: CommonList = new CommonList();
+  stoppageAccount: StringCommonList = new StringCommonList();
   department: StringCommonList = new StringCommonList();
   referenceNumber: number;
   invoiceDate: Date;

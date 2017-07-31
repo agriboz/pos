@@ -52,7 +52,6 @@ export class VendorComponent implements OnInit {
     else {
       const id: number = this.activatedRoute.snapshot.params.id;
       this.getVendorPaymentById(id);
-      this.getDepartments();
     }
   }
 
@@ -95,6 +94,7 @@ export class VendorComponent implements OnInit {
       .map(data => this.companies = data)
       .flatMap(data => this.dataservice.getCurrencies().map(x => this.currencies = x))
       .flatMap(data => this.dataservice.getVendorPaymentByEInvoiceId(eInvoiceId).map(x => this.item = x))
+      .flatMap(data => this.dataservice.getStoppageAccounts(data.company.id).map(x => this.stoppageAccounts = x))
       .subscribe();
   }
 
@@ -103,7 +103,9 @@ export class VendorComponent implements OnInit {
       .getCompanies()
       .map(data => this.companies = data)
       .flatMap(data => this.dataservice.getCurrencies().map(x => this.currencies = x))
+      .flatMap(data => this.dataservice.getDepartments().map(x => this.departments = x))
       .flatMap(data => this.dataservice.getVendorPaymentById(id).map(x => this.item = x))
+      .flatMap(data => this.dataservice.getStoppageAccounts(data.company.id).map(x => this.stoppageAccounts = x))
       .subscribe();
   }
 

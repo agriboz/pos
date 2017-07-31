@@ -1,4 +1,6 @@
-import { CommonList } from './common-list.model';
+import { 
+    CommonList 
+} from './index';
 
 export class DistributionDetail {
     id: number;
