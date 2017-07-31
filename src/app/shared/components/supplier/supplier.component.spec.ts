@@ -1,5 +1,6 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MaterialModule } from '@angular/material';
 import { SupplierComponent } from './supplier.component';
 
 describe('SupplierComponent', () => {
@@ -8,6 +9,7 @@ describe('SupplierComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ MaterialModule, BrowserAnimationsModule ],
       declarations: [ SupplierComponent ]
     })
     .compileComponents();

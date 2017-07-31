@@ -30,7 +30,6 @@ describe('AppComponent', () => {
     async(() => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
-      console.log('this is the app', app);
       expect(app.title).toEqual('pos.borusan.com');
     })
   );
@@ -47,15 +46,4 @@ describe('AppComponent', () => {
     })
   );
 
-  it(
-    'should render links',
-    async(() => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('h1').textContent).toContain(
-        'pos.borusan.com'
-      );
-    })
-  );
 });
