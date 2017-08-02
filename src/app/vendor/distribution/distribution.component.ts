@@ -12,7 +12,6 @@ import {
   styleUrls: ['./distribution.component.css']
 })
 export class DistributionComponent implements OnInit {
-  public dialogRef: MdDialogRef<DistributionComponent>
   @Input() item: DistributionDetail = new DistributionDetail();
   @Input() costCenters: CommonList[] = [];
   @Input() internalOrders: CommonList[] = [];
@@ -20,7 +19,7 @@ export class DistributionComponent implements OnInit {
   @Input() externalAccounts: CommonList[] = [];
   @Output() onCostCenterChanged: EventEmitter<any> = new EventEmitter();
 
-  constructor(private mdDialog: MdDialog) { }
+  constructor(private dialogRef: MdDialogRef<DistributionComponent>) { }
 
   costCenterChanged(e) {
     this.onCostCenterChanged.emit(e);

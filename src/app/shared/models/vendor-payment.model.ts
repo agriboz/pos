@@ -21,6 +21,7 @@ export class VendorPayment {
   communicationTaxAmount: number;
   totalAmount: number;
   isManeul: boolean;
+  startFlow: boolean;
   currencyRate: number;
   supplier: Supplier = new Supplier();
   invoiceItems: InvoiceItem[] = [];
