@@ -9,7 +9,8 @@ import {
   CommonList,
   StringCommonList,
   InvoiceItem,
-  DistributionDetail
+  DistributionDetail,
+  Result
 } from '../shared/models';
 
 import {
@@ -38,8 +39,8 @@ export class VendorComponent implements OnInit {
   private referenceNumbers: Map<number, number> = new Map<number, number>();
 
   constructor(private dataservice: DataService
-            , private dialogservice: DialogService
-            , private activatedRoute: ActivatedRoute, private toastr: ToastrService) { }
+    , private dialogservice: DialogService
+    , private activatedRoute: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit() {
     const isTransform: boolean = this.activatedRoute.snapshot.data['isTransform'];
@@ -138,21 +139,43 @@ export class VendorComponent implements OnInit {
   }
 
   startFlow() {
-    this.dataservice
-      .posVendorPayment(this.item)
-      .subscribe();
+    this.item.startFlow = true;
+    this.sentData();
   }
 
   save() {
+    this.item.startFlow = false;
+    this.sentData();
+  }
 
+  sentData() {
+    if (this.item.id != 0) {
+      this.dataservice
+        .putVendorPayment(this.item)
+        .subscribe(data => this.raiseToastr(data));
+    }
+    else {
+      this.dataservice
+        .postVendorPayment(this.item)
+        .subscribe(data => this.raiseToastr(data));
+    }
   }
 
   approve() {
-
+    this.dataservice
+      .approveVendorPayment(this.item)
+      .subscribe(data => this.raiseToastr(data));
   }
 
   reject() {
+    this.dataservice
+      .rejectVendorPayment(this.item)
+      .subscribe(data => this.raiseToastr(data));
+  }
 
+  raiseToastr(result: Result) {
+    //if (!result.isSucceeded)
+      this.toastr.showToaster(result.message);
   }
 
   newRecord() {
