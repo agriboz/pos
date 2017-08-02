@@ -3,6 +3,7 @@ import { MaterialModule } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import { InvoiceDetailComponent } from './invoice-detail.component';
+import { FormsModule } from '@angular/forms';
 
 describe('InvoiceDetailComponent', () => {
   let component: InvoiceDetailComponent;
@@ -10,7 +11,7 @@ describe('InvoiceDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MaterialModule, NoopAnimationsModule ],
+      imports: [ MaterialModule, NoopAnimationsModule, FormsModule ],
       declarations: [ InvoiceDetailComponent ]
     })
     .compileComponents();
