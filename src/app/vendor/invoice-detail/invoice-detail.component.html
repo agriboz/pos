@@ -26,7 +26,7 @@
       </md-input-container>
     </div>
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Stopaj Hesabı" [(ngModel)]="item.stoppageAccount.id">
+      <md-select fxFlex="25" placeholder="Stopaj Hesabı" [(ngModel)]="item?.stoppageAccount.id">
         <md-option *ngFor="let s of stoppageAccounts" [value]="s.id">{{ s.name }}
         </md-option>
       </md-select>

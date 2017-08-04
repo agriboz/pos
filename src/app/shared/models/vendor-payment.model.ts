@@ -1,8 +1,8 @@
-import { 
-  CommonList, 
-  StringCommonList, 
-  Supplier, 
-  InvoiceItem 
+import {
+  CommonList,
+  StringCommonList,
+  Supplier,
+  InvoiceItem
 } from './index';
 
 export class VendorPayment {

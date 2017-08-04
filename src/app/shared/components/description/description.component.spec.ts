@@ -26,13 +26,6 @@ describe('DescriptionComponent', () => {
   });
 
   it('should be created', () => {
-    const company = [
-      {
-        id: 1,
-        name: 'can'
-      }
-    ];
-    component.ngOnInit();
-    expect(company).toBeTruthy();
+    expect(fixture).toBeTruthy();
   });
 });
