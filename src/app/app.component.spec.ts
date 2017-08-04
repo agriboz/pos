@@ -1,4 +1,5 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ describe('AppComponent', () => {
       TestBed.configureTestingModule({
         declarations: [AppComponent],
         providers: [],
+        imports: [ RouterTestingModule ],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
     })

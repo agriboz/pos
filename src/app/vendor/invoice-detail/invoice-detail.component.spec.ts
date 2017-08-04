@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -11,7 +12,8 @@ describe('InvoiceDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MaterialModule, NoopAnimationsModule, FormsModule ],
+      imports: [MaterialModule, NoopAnimationsModule, FormsModule],
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [ InvoiceDetailComponent ]
     })
     .compileComponents();
