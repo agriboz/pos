@@ -85,6 +85,7 @@ export class HttpInterceptorService extends Http {
     options.withCredentials = true;
 
     const userName: string = sessionStorage.getItem('userName');
+
     if (!!userName) {
       options.headers.append('UserName', userName);
     }

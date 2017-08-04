@@ -45,23 +45,23 @@ export class VendorComponent implements OnInit {
 
   ngOnInit() {
     const isTransform: boolean = this.activatedRoute.snapshot.data['isTransform'];
+    const userName: string = this.activatedRoute.snapshot.queryParams.userName;
 
-    this.activatedRoute
-      .queryParams
-      .subscribe(params => {
-        sessionStorage.clear();
-        sessionStorage.setItem("userName", params["userName"]);
+    sessionStorage.clear();
 
-        if (isTransform) {
-          const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
-          this.getVendorPaymentByEInvoiceId(eInvoiceId);
-          this.getDepartments();
-        }
-        else {
-          const id: number = this.activatedRoute.snapshot.params.id;
-          this.getVendorPaymentById(id);
-        }
-      });
+    if (userName != undefined) {
+      sessionStorage.setItem("userName", userName);
+    }
+
+    if (isTransform) {
+      const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
+      this.getVendorPaymentByEInvoiceId(eInvoiceId);
+      this.getDepartments();
+    }
+    else {
+      const id: number = this.activatedRoute.snapshot.params.id;
+      this.getVendorPaymentById(id);
+    }
   }
 
   getCompanies() {
