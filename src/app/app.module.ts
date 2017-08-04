@@ -16,6 +16,10 @@ import { httpService } from './http.service';
 import { CdkTableModule } from '@angular/cdk';
 import { ToastrService } from './shared/services/toastr.service';
 import { DialogService } from './shared/services/dialog.service';
+import 'hammerjs';
+
+
+
 
 const appRoutes: Routes = [
   {
