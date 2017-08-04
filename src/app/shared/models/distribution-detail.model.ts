@@ -8,5 +8,7 @@ export class DistributionDetail {
     costCenter: CommonList = new CommonList();
     internalOrder: CommonList = new CommonList();
     quantity: number = 0;
+    taxAmount: number = 0;
+    amount: number = 0;
     isInternal: boolean = true;
 }

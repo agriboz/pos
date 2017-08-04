@@ -15,17 +15,12 @@ import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
-
 @Injectable()
-
 export class HttpInterceptorService extends Http {
 
-  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, private toastr: ToastrService ) {
+  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, private toastr: ToastrService) {
     super(backend, defaultOptions);
-
   }
-
-
 
   request(
     url: string | Request,
@@ -52,7 +47,7 @@ export class HttpInterceptorService extends Http {
 
   post(
     url: string,
-    body: string,
+    body: any,
     options?: RequestOptionsArgs
   ): Observable<Response> {
     url = this.updateUrl(url);
@@ -61,7 +56,7 @@ export class HttpInterceptorService extends Http {
 
   put(
     url: string,
-    body: string,
+    body: any,
     options?: RequestOptionsArgs
   ): Observable<Response> {
     url = this.updateUrl(url);
@@ -87,8 +82,12 @@ export class HttpInterceptorService extends Http {
       options.headers = new Headers();
     }
     options.headers.append('Content-Type', 'application/json');
+    options.withCredentials = true;
 
-    options = new RequestOptions({withCredentials: true})
+    const userName: string = sessionStorage.getItem('userName');
+    options.headers.append('UserName', userName);
+
+    //options = new RequestOptions({withCredentials: true})
     return options;
   }
 }

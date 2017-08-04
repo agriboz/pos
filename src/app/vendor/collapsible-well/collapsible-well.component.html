@@ -23,7 +23,9 @@
             </div>
           </div>
           <div fxLayout="column" *ngIf="i.isVisible">
-            <app-distribution-grid [distributionDetails]="i.distributionDetails">
+            <app-distribution-grid [distributionDetails]="i.distributionDetails"
+                                   [taxAmount]="i.taxAmount"
+                                   [amount]="i.amount">
             </app-distribution-grid>
           </div>
         </div>

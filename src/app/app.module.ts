@@ -40,7 +40,6 @@ const appRoutes: Routes = [
     IndividualModule,
     VendorModule,
     CdkTableModule,
-
   ],
   exports: [],
   providers: [

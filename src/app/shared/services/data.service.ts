@@ -14,7 +14,7 @@ import {
 @Injectable()
 export class DataService {
 
-  constructor(private http: Http) { }
+  constructor(public http: Http) { }
 
   getPaymentReasons(): Observable<CommonList[]> {
     return this.http.get('paymentReasons').map((response: Response) => {

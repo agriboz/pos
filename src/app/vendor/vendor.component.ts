@@ -40,20 +40,28 @@ export class VendorComponent implements OnInit {
 
   constructor(private dataservice: DataService
     , private dialogservice: DialogService
-    , private activatedRoute: ActivatedRoute, private toastr: ToastrService) { }
+    , private activatedRoute: ActivatedRoute
+    , private toastr: ToastrService) { }
 
   ngOnInit() {
     const isTransform: boolean = this.activatedRoute.snapshot.data['isTransform'];
 
-    if (isTransform) {
-      const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
-      this.getVendorPaymentByEInvoiceId(eInvoiceId);
-      this.getDepartments();
-    }
-    else {
-      const id: number = this.activatedRoute.snapshot.params.id;
-      this.getVendorPaymentById(id);
-    }
+    this.activatedRoute
+      .queryParams
+      .subscribe(params => {
+        sessionStorage.clear();
+        sessionStorage.setItem("userName", params["userName"]);
+
+        if (isTransform) {
+          const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
+          this.getVendorPaymentByEInvoiceId(eInvoiceId);
+          this.getDepartments();
+        }
+        else {
+          const id: number = this.activatedRoute.snapshot.params.id;
+          this.getVendorPaymentById(id);
+        }
+      });
   }
 
   getCompanies() {
@@ -139,12 +147,12 @@ export class VendorComponent implements OnInit {
   }
 
   startFlow() {
-    this.item.startFlow = true;
+    this.item.isSent = true;
     this.sentData();
   }
 
   save() {
-    this.item.startFlow = false;
+    this.item.isSent = false;
     this.sentData();
   }
 
@@ -175,7 +183,7 @@ export class VendorComponent implements OnInit {
 
   raiseToastr(result: Result) {
     //if (!result.isSucceeded)
-      this.toastr.showToaster(result.message);
+    this.toastr.showToaster(result.message);
   }
 
   newRecord() {
