@@ -5,6 +5,8 @@
       <th class="mat-header-cell">Masraf Yeri</th>
       <th class="mat-header-cell">İç Sipariş</th>
       <th class="mat-header-cell">Adet</th>
+      <th class="mat-header-cell">Vergi Tutarı</th>
+      <th class="mat-header-cell">Matrah</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +15,8 @@
       <td class="mat-cell">{{ d.costCenter.name }}</td>
       <td class="mat-cell">{{ d.internalOrder.name }}</td>
       <td class="mat-cell">{{ d.quantity }}</td>
+      <td class="mat-cell">{{ d.taxAmount | number:'1.0-2' }}</td>
+      <td class="mat-cell">{{ d.amount | number:'1.0-2' }}</td>
     </tr>
   </tbody>
 </table>
