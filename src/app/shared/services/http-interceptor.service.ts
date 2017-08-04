@@ -32,7 +32,7 @@ export class HttpInterceptorService extends Http {
   catchErrors() {
     return (res: Response) => {
       console.log(res);
-      if (res.status === 401) {
+      if (res.status === 401 || res.status === 500) {
          this.toastr.showToaster(res.statusText);
          return Observable.throw(res);
       }
@@ -90,7 +90,6 @@ export class HttpInterceptorService extends Http {
       options.headers.append('UserName', userName);
     }
 
-    //options = new RequestOptions({withCredentials: true})
     return options;
   }
 }

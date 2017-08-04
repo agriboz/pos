@@ -9,10 +9,13 @@
 
 
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department.id">
+      <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department.id" *ngIf="!item.id">
         <md-option *ngFor="let d of departments" [value]="d.id">{{ d.name }}
         </md-option>
       </md-select>
+      <md-input-container fxFlex="25" *ngIf="!!item.id">
+        <input mdInput placeholder="Departman" [value]="item.department.name" disabled />
+      </md-input-container>
       <div>Aktarım Türü</div>
       <md-radio-group [(ngModel)]="item.isManuel">
         <md-radio-button [value]="false">Otomatik</md-radio-button>
@@ -36,10 +39,10 @@
 </app-collapsible-well>
 <div class="component-container">
   <div fxLayout="row" class="form-viewer-wrapper no-shadow" fxLayoutAlign="end center" fxLayoutGap="20px">
-    <button md-raised-button (click)="startFlow()" color="primary">Onaya Gönder</button>
+    <button md-raised-button (click)="startFlow()" color="primary" *ngIf="!item.flowId">Onaya Gönder</button>
     <button md-raised-button (click)="save()" color="accent">Kaydet</button>
-    <button md-raised-button (click)="approve()" color="primary">Onayla</button>
-    <button md-raised-button (click)="reject()" color="warn">Reddet</button>
+    <button md-raised-button (click)="approve()" color="primary" *ngIf="!!item.flowId">Onayla</button>
+    <button md-raised-button (click)="reject()" color="warn" *ngIf="!!item.flowId">Reddet</button>
     <!-- <button md-raised-button (click)="newRecord()">Yeni Kayıt</button> -->
   </div>
 </div>

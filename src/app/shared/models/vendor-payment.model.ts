@@ -7,6 +7,7 @@ import {
 
 export class VendorPayment {
   id: number;
+  flowId: number;
   code: number;
   company: CommonList = new CommonList();
   currency: CommonList = new CommonList();
