@@ -1,0 +1,26 @@
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Fatura Dokümanları</div>
+    </div>
+    <div class="form-viewer-body">
+
+      <table class="mat-table" *ngIf="!!documents?.length">
+        <thead>
+          <tr class="mat-header-row">
+            <th class="mat-header-cell">Doküman Adı</th>
+            <th class="mat-header-cell"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of documents | exclude" class="mat-row">
+            <td class="mat-cell"><a target="_blank" [href]="baseUrl + d.link">{{ d.name }}</a></td>
+            <td class="mat-cell"><button md-raised-button color="warn" (click)="remove(d)">Sil</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <input #fileInput type="file" (change)="fileChange($event)" placeholder="Doküman Yükle">
+    </div>
+  </div>
+</div>

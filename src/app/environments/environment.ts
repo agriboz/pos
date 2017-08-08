@@ -6,4 +6,5 @@
 export const environment = {
   production: false,
   origin: 'http://10.10.27.36:8181/POS/v2/vendorpayment/'
+  //origin: 'http://localhost:60522/'
 };

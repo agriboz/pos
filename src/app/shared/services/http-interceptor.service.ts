@@ -80,8 +80,8 @@ export class HttpInterceptorService extends Http {
     }
     if (options.headers == null) {
       options.headers = new Headers();
+      options.headers.append('Content-Type', 'application/json');
     }
-    options.headers.append('Content-Type', 'application/json');
     options.withCredentials = true;
 
     const userName: string = sessionStorage.getItem('userName');

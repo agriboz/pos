@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VendorComponent } from './vendor.component';
+import { VendorRoute } from '../shared/models/index';
 
 const routes: Routes = [
   {
     path: 'vendor/:id',
     component: VendorComponent,
-    data: { isTransform: false }
+    data: { routeState: VendorRoute.Existed }
   },
   {
     path: 'vendor/transform/:id',
     component: VendorComponent,
-    data: { isTransform: true }
+    data: { routeState: VendorRoute.Transformed }
+  },
+  {
+    path: 'vendor',
+    component: VendorComponent,
+    data: { routeState: VendorRoute.New }
   }
 ];
 

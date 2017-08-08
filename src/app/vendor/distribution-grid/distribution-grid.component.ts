@@ -20,13 +20,15 @@ export class DistributionGridComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     if (!this.distributionDetails) {
       this.distributionDetails = [];
     }
 
     this.calculateAmount();
   }
+
+  ngOnInit() { }
 
   calculateQuantity() {
     this.sumQuantity = this.distributionDetails.reduce((acc, item) => {

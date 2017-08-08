@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Supplier } from '../../models/supplier.model';
+import { Supplier, VendorRoute } from '../../models/index';
 
 @Component({
   selector: 'app-supplier',
@@ -10,10 +10,14 @@ import { Supplier } from '../../models/supplier.model';
 export class SupplierComponent implements OnInit {
 
   @Input() item: Supplier = new Supplier();
+  @Input() routeState: VendorRoute;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  pickSupplier() {
+    
+  }
 }

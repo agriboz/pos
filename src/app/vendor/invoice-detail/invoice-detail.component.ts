@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import {
   VendorPayment,
-  CommonList
+  CommonList,
+  VendorRoute
  } from '../../shared/models/index';
 
 @Component({
@@ -14,7 +15,8 @@ export class InvoiceDetailComponent implements OnInit {
 
   @Input() item: VendorPayment;
   @Input() stoppageAccounts: CommonList[] = [];
-
+  @Input() routeState: VendorRoute;
+  
   constructor() { }
 
   ngOnInit() {
