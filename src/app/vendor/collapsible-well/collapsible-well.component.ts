@@ -16,6 +16,7 @@ export class CollapsibleWellComponent implements OnInit {
   @Input() invoiceItems: InvoiceItem[] = [];
   @Input() routeState: VendorRoute;
   @Output() onAddDistribution: EventEmitter<any> = new EventEmitter();
+  @Output() onAddInvoiceItem: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -31,9 +32,6 @@ export class CollapsibleWellComponent implements OnInit {
   }
 
   addInvoiceItem() { 
-
-  }
-  pickSupplier() {
-    
+    this.onAddInvoiceItem.emit();
   }
 }

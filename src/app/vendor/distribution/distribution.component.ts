@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MdDialogRef, MdDialog } from '@angular/material';
 
 import {
@@ -12,12 +12,14 @@ import {
   styleUrls: ['./distribution.component.css']
 })
 export class DistributionComponent implements OnInit {
-  @Input() item: DistributionDetail = new DistributionDetail();
-  @Input() costCenters: CommonList[] = [];
-  @Input() internalOrders: CommonList[] = [];
-  @Input() internalAccounts: CommonList[] = [];
-  @Input() externalAccounts: CommonList[] = [];
-  @Output() onCostCenterChanged: EventEmitter<any> = new EventEmitter();
+
+  private item: DistributionDetail = new DistributionDetail();
+
+  public costCenters: CommonList[] = [];
+  public internalOrders: CommonList[] = [];
+  public internalAccounts: CommonList[] = [];
+  public externalAccounts: CommonList[] = [];
+  public onCostCenterChanged: EventEmitter<any> = new EventEmitter();
 
   constructor(private dialogRef: MdDialogRef<DistributionComponent>) { }
 

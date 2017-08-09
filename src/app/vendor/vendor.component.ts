@@ -272,4 +272,37 @@ export class VendorComponent implements OnInit {
       e.state = ModuleDocumentState.Deleted;
     }
   }
+
+  searchSupplier() {
+    this.dialogservice
+      .searchSupplier(this.item.company.id)
+      .subscribe(data =>  { 
+        if (data) {
+          this.item.supplier = data;
+          this.calculatePaymentDate();
+        }
+      });
+  }
+
+  addInvoiceItem() {
+    this.dialogservice
+      .addInvoiceItem(this.item.company.id)
+      .subscribe(data => {
+        if (data) {
+          if (!this.item.invoiceItems) {
+            this.item.invoiceItems = [];
+          }
+
+          this.item.invoiceItems = [...this.item.invoiceItems, data];
+        }
+      });
+  }
+
+  calculatePaymentDate() {
+    console.log(this.item);
+    if (this.item && this.item.supplier && this.item.invoiceDate) { 
+      console.log(this.item);
+      this.item.paymentDate = new Date(this.item.invoiceDate.setDate(this.item.supplier.expiry));
+    }
+  }
 }

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SupplierSearch } from '../../models/index';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { MdDialogRef, MdDialog } from '@angular/material';
+import { SupplierSearch, Supplier } from '../../models/index';
 
 @Component({
   selector: 'app-supplier-dialog',
@@ -8,11 +9,17 @@ import { SupplierSearch } from '../../models/index';
 })
 export class SupplierDialogComponent implements OnInit {
 
-  @Input() item: SupplierSearch = new SupplierSearch();
+  public item: SupplierSearch = new SupplierSearch();
+  public supplierList: Supplier[] = [];
 
-  constructor() { }
+  @Output() onSearchSupplier: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private dialogRef: MdDialogRef<SupplierDialogComponent>) { }
 
   ngOnInit() {
   }
 
+  searchSupplier() {
+    this.onSearchSupplier.emit(this.item);
+  }
 }

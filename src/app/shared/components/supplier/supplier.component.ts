@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import { Supplier, VendorRoute } from '../../models/index';
 
@@ -11,6 +11,7 @@ export class SupplierComponent implements OnInit {
 
   @Input() item: Supplier = new Supplier();
   @Input() routeState: VendorRoute;
+  @Output() onSearchSupplier: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -18,6 +19,6 @@ export class SupplierComponent implements OnInit {
   }
 
   pickSupplier() {
-    
+    this.onSearchSupplier.emit();
   }
 }
