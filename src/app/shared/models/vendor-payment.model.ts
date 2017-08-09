@@ -2,7 +2,8 @@ import {
   CommonList,
   StringCommonList,
   Supplier,
-  InvoiceItem
+  InvoiceItem,
+  ModuleDocument
 } from './index';
 
 export class VendorPayment {
@@ -21,9 +22,10 @@ export class VendorPayment {
   withHoldingAmount: number;
   communicationTaxAmount: number;
   totalAmount: number;
-  isManeul: boolean;
+  isManuel: boolean;
   isSent: boolean;
   currencyRate: number;
   supplier: Supplier = new Supplier();
   invoiceItems: InvoiceItem[] = [];
+  documents: ModuleDocument[] = [];
 }

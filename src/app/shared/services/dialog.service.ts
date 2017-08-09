@@ -5,6 +5,7 @@ import { DistributionDetail } from '../models/distribution-detail.model';
 import { MdDialog } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { SupplierDialogComponent } from '../components/supplier-dialog/supplier-dialog.component';
 
 @Injectable()
 export class DialogService {
@@ -33,6 +34,10 @@ export class DialogService {
             .flatMap(data => this.dataservice.getInternalOrders(data.value.id).map(x => dialogRef.componentInstance.internalOrders = x))
             .subscribe();
 
+        return dialogRef.afterClosed();
+    }
+    searchSupplier(): Observable<any> {
+        let dialogRef = this.dialog.open(SupplierDialogComponent);
         return dialogRef.afterClosed();
     }
 }

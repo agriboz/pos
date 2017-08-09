@@ -10,7 +10,10 @@ import {
   StringCommonList,
   InvoiceItem,
   DistributionDetail,
-  Result
+  Result,
+  VendorRoute,
+  ModuleDocumentState,
+  ModuleDocument
 } from '../shared/models';
 
 import {
@@ -37,6 +40,7 @@ export class VendorComponent implements OnInit {
   private costCenters: CommonList[] = [];
   private internalOrders: CommonList[] = [];
   private referenceNumbers: Map<number, number> = new Map<number, number>();
+  private routeState: VendorRoute;
 
   constructor(private dataservice: DataService
     , private dialogservice: DialogService
@@ -44,7 +48,7 @@ export class VendorComponent implements OnInit {
     , private toastr: ToastrService) { }
 
   ngOnInit() {
-    const isTransform: boolean = this.activatedRoute.snapshot.data['isTransform'];
+    this.routeState = this.activatedRoute.snapshot.data['routeState'];
     const userName: string = this.activatedRoute.snapshot.queryParams.userName;
 
     sessionStorage.clear();
@@ -53,15 +57,38 @@ export class VendorComponent implements OnInit {
       sessionStorage.setItem("userName", userName);
     }
 
-    if (isTransform) {
-      const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
-      this.getVendorPaymentByEInvoiceId(eInvoiceId);
-      this.getDepartments();
+    switch (this.routeState) {
+      case VendorRoute.Transformed:
+        const eInvoiceId: number = this.activatedRoute.snapshot.params.id;
+        this.getVendorPaymentByEInvoiceId(eInvoiceId);
+        this.getDepartments();
+        break;
+      case VendorRoute.Existed:
+        const id: number = this.activatedRoute.snapshot.params.id;
+        this.getVendorPaymentById(id);
+        break;
+      case VendorRoute.New:
+        this.getCompanies();
+        this.getCurrencies();
+        this.getDepartments();
+        this.item.isManuel = false;
+        break;
     }
-    else {
-      const id: number = this.activatedRoute.snapshot.params.id;
-      this.getVendorPaymentById(id);
-    }
+  }
+
+  validate() {
+    let errors: string[] = [];
+
+    if (!this.item.description)
+      errors.push("Açıklama alanı boş geçilemez");
+    if (!this.item.department || !this.item.department.id)
+      errors.push("Departman alanı boş geçilemez");
+    if (!this.item.invoiceItems || this.item.invoiceItems.some(x => !x.distributionDetails))
+      errors.push("Dağıtım kalemleri girilmeden kayıt işlemi yapıalamz");
+
+    this.toastr.showToaster(errors.join(' // '));
+
+    return errors.length == 0;
   }
 
   getCompanies() {
@@ -157,16 +184,45 @@ export class VendorComponent implements OnInit {
   }
 
   sentData() {
+    console.log(this.item);
+
+    if (!this.validate())
+      return;
+
     if (this.item.id != 0) {
       this.dataservice
         .putVendorPayment(this.item)
-        .subscribe(data => this.raiseToastr(data));
+        .subscribe(data => {
+          this.raiseToastr(data)
+          this.syncFiles();
+        });
     }
     else {
       this.dataservice
         .postVendorPayment(this.item)
-        .subscribe(data => this.raiseToastr(data));
+        .subscribe(data => {
+          this.raiseToastr(data);
+          this.item.id = data.data;
+          this.syncFiles();
+        });
     }
+  }
+
+  syncFiles() {
+    this.item.documents.map((item, i) => {
+      switch(item.state) {
+        case ModuleDocumentState.Added:
+          this.dataservice
+            .putVendorPaymentDocument(this.item.id, item.file)
+            .subscribe();
+          break;
+        case ModuleDocumentState.Deleted:
+          this.dataservice
+            .deleteVendorPaymentDocument(item.id)
+            .subscribe();
+          break;
+      }
+    });
   }
 
   approve() {
@@ -188,5 +244,32 @@ export class VendorComponent implements OnInit {
 
   newRecord() {
 
+  }
+
+  fileChanged(e) {
+    if (!this.item.documents) {
+      this.item.documents = [];
+    }
+
+    let fileList: FileList = e.target.files;
+
+    if (fileList.length > 0) {
+      let document: ModuleDocument = new ModuleDocument();
+      document.file = fileList[0];
+      document.name = this.item.referenceNumber.toString() + '_' + document.file.name;
+      document.state = ModuleDocumentState.Added;
+
+      this.item.documents = [...this.item.documents, document];
+    }
+  } 
+
+  fileRemoved(e: ModuleDocument) {
+    if (e.state == ModuleDocumentState.Added) {
+      let index: number = this.item.documents.indexOf(e);
+      this.item.documents.splice(index, 1);
+    }
+    else {
+      e.state = ModuleDocumentState.Deleted;
+    }
   }
 }

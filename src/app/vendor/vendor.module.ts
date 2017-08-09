@@ -13,6 +13,9 @@ import { DistributionComponent } from './distribution/distribution.component';
 import { DialogService } from '../shared/services/dialog.service';
 import { CollapsibleWellComponent } from './collapsible-well/collapsible-well.component';
 import { DistributionGridComponent } from './distribution-grid/distribution-grid.component';
+import { DocumentGridComponent } from '../shared/components/document-grid/document-grid.component';
+import { SupplierDialogComponent } from '../shared/components/supplier-dialog/supplier-dialog.component';
+import { DocumentStatePipe } from "app/shared/components/document-grid/document-state.pipe";
 
 @NgModule({
   imports: [
@@ -36,7 +39,10 @@ import { DistributionGridComponent } from './distribution-grid/distribution-grid
     SupplierComponent,
     DistributionComponent,
     CollapsibleWellComponent,
-    DistributionGridComponent
+    DistributionGridComponent,
+    DocumentGridComponent,
+    SupplierDialogComponent,
+    DocumentStatePipe
   ]
 })
 export class VendorModule { }

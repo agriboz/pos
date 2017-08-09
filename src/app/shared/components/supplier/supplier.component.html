@@ -3,6 +3,9 @@
     <div class="form-viewer-title">
       <div class="form-viewer-title-spacer">Satıcı Bilgileri</div>
     </div>
+
+    <button md-raised-button (click)="pickSupplier()" *ngIf="routeState==0" color="primary">Seç</button>
+
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>
         <input mdInput placeholder="Satıcı Adı" [value]="item.name" disabled />

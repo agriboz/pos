@@ -2,7 +2,8 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import {
   InvoiceItem,
-  DistributionDetail
+  DistributionDetail,
+  VendorRoute
 } from '../../shared/models';
 
 @Component({
@@ -11,7 +12,9 @@ import {
   styleUrls: ['./collapsible-well.component.css']
 })
 export class CollapsibleWellComponent implements OnInit {
+
   @Input() invoiceItems: InvoiceItem[] = [];
+  @Input() routeState: VendorRoute;
   @Output() onAddDistribution: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
@@ -25,5 +28,12 @@ export class CollapsibleWellComponent implements OnInit {
 
   addDistribution(e) {
     this.onAddDistribution.emit(e);
+  }
+
+  addInvoiceItem() { 
+
+  }
+  pickSupplier() {
+    
   }
 }

@@ -7,7 +7,6 @@
     <app-description [companies]="companies" [currencies]="currencies" [item]="item" (onCompanyChanged)="companyChanged($event)">
     </app-description>
 
-
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department.id" *ngIf="!item.id">
         <md-option *ngFor="let d of departments" [value]="d.id">{{ d.name }}
@@ -30,17 +29,29 @@
   </div>
 </div>
 
-<app-supplier [item]="item.supplier"></app-supplier>
+<app-supplier [item]="item.supplier" 
+              [routeState]="routeState">
+</app-supplier>
 
-<app-invoice-detail [item]="item" [stoppageAccounts]="stoppageAccounts">
+<app-invoice-detail [item]="item" 
+                    [stoppageAccounts]="stoppageAccounts"
+                    [routeState]="routeState">
 </app-invoice-detail>
 
-<app-collapsible-well [invoiceItems]="item.invoiceItems" (onAddDistribution)="addDistribution($event)">
+<app-collapsible-well [invoiceItems]="item.invoiceItems"
+                      [routeState]="routeState"
+                      (onAddDistribution)="addDistribution($event)">
 </app-collapsible-well>
+
+<app-document-grid [documents]="item.documents"
+                   (onFileChanged)="fileChanged($event)"
+                   (onFileRemoved)="fileRemoved($event)">
+</app-document-grid>
+
 <div class="component-container">
   <div fxLayout="row" class="form-viewer-wrapper no-shadow" fxLayoutAlign="end center" fxLayoutGap="20px">
     <button md-raised-button (click)="startFlow()" color="primary" *ngIf="!item.flowId">Onaya Gönder</button>
-    <button md-raised-button (click)="save()" color="accent">Kaydet</button>
+    <button md-raised-button (click)="save()">Kaydet</button>
     <button md-raised-button (click)="approve()" color="primary" *ngIf="!!item.flowId">Onayla</button>
     <button md-raised-button (click)="reject()" color="warn" *ngIf="!!item.flowId">Reddet</button>
     <!-- <button md-raised-button (click)="newRecord()">Yeni Kayıt</button> -->

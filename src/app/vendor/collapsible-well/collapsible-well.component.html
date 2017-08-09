@@ -3,6 +3,9 @@
     <div class="form-viewer-title">
       <div class="form-viewer-title-spacer">Fatura Kalemleri</div>
     </div>
+
+    <button md-raised-button (click)="addInvoiceItem()" *ngIf="routeState==0" color="primary">Ekle</button>
+
     <div class="form-viewer-body">
       <div fxLayout="column">
         <div fxLayout="row" class="table-related mat-header-row">

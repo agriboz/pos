@@ -11,6 +11,10 @@ import {
   Result
 } from '../models/index';
 
+import {
+  RequestOptions
+} from '@angular/http';
+
 @Injectable()
 export class DataService {
 
@@ -126,6 +130,24 @@ export class DataService {
 
   rejectVendorPayment(vendorPayment: VendorPayment): Observable<Result> {
     return this.http.put('Reject/' + vendorPayment.id.toString(), vendorPayment).map((response: Response) => {
+      return response.json().data;
+    }).catch(this.handleError);
+  }
+
+  putVendorPaymentDocument(vendorPaymentId: number, file: File): Observable<Result> {
+    let formData: FormData = new FormData();  
+    formData.append('uploadFile', file, file.name);  
+
+    let options: RequestOptions = new RequestOptions();
+    options.headers = new Headers();
+
+    return this.http.put('Document/' + vendorPaymentId.toString(), formData, options).map((response: Response) => {
+      return response.json().data;
+    }).catch(this.handleError);
+  }
+
+  deleteVendorPaymentDocument(documentId: number): Observable<Result> {
+    return this.http.delete('Document/' + documentId.toString()).map((response: Response) => {
       return response.json().data;
     }).catch(this.handleError);
   }
