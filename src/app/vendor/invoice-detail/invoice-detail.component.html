@@ -3,7 +3,7 @@
     <div class="form-viewer-title">
       <div class="form-viewer-title-spacer">Fatura Bilgileri</div>
     </div>
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+    <div fxLayout="row" *ngIf="item" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>
         <input mdInput placeholder="Fatura Numarası" [(ngModel)]="item.invoiceNumber" [disabled]="routeState!=0" />
       </md-input-container>
@@ -21,7 +21,7 @@
         <input mdInput placeholder="Ödeme Tarihi" [(ngModel)]="item.paymentDate" [value]="item.paymentDate | date: 'dd.MM.yyyy'" disabled />
       </md-input-container>
     </div>
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+    <div fxLayout="row" *ngIf="item" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>
         <input mdInput placeholder="Çeviri Kuru" [(ngModel)]="item.currencyRate" />
       </md-input-container>
@@ -29,8 +29,8 @@
         <textarea mdInput placeholder="Açıklama" [(ngModel)]="item.description" required></textarea>
       </md-input-container>
     </div>
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Stopaj Hesabı" [(ngModel)]="item?.stoppageAccount.id">
+    <div fxLayout="row" *ngIf="item" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-select fxFlex="25" placeholder="Stopaj Hesabı"  [(ngModel)]="item?.stoppageAccount.id">
         <md-option *ngFor="let s of stoppageAccounts" [value]="s.id">{{ s.name }}
         </md-option>
       </md-select>
