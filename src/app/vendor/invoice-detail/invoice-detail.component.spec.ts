@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdInputModule } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { InvoiceDetailComponent } from './invoice-detail.component';
-import { FormsModule } from '@angular/forms';
 
 describe('InvoiceDetailComponent', () => {
   let component: InvoiceDetailComponent;
@@ -12,7 +11,7 @@ describe('InvoiceDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, NoopAnimationsModule, FormsModule],
+      imports: [MaterialModule, NoopAnimationsModule, FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ InvoiceDetailComponent ]
     })
