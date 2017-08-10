@@ -11,7 +11,7 @@
         <input mdInput placeholder="Fatura Tarihi" [value]="item.invoiceDate | date: 'dd.MM.yyyy'" disabled />
       </md-input-container>
       <div *ngIf="routeState==0">
-        <md-input-container fxFlex="25">
+        <md-input-container fxFlex>
           <input mdInput [mdDatepicker]="picker" placeholder="Fatura Tarihi" (blur)="invoiceDateChanged()">
           <button mdSuffix [mdDatepickerToggle]="picker"></button>
         </md-input-container>

@@ -18,22 +18,22 @@
 
   <table *ngIf="!!supplierList.length">
     <thead>
-      <tr>
-        <th>Satıcı Adı</th>
-        <th>Muhasebe Kodu</th>
-        <th>Vergi Dairesi</th>
-        <th>Vergi No</th>
-        <th>Vade</th>
+      <tr class="table-related mat-header-row">
+        <th class="mat-header-cell">Satıcı Adı</th>
+        <th class="mat-header-cell">Muhasebe Kodu</th>
+        <th class="mat-header-cell">Vergi Dairesi</th>
+        <th class="mat-header-cell">Vergi No</th>
+        <th class="mat-header-cell">Vade</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let s of supplierList" (click)="dialogRef.close(s)">
-        <td>{{ s.name }}</td>
-        <td>{{ s.accountNumber }}</td>
-        <td>{{ s.taxOffice }}</td>
-        <td>{{ s.taxNumber }}</td>
-        <td>{{ s.expiry }}</td>
+      <tr class="table-related mat-row" *ngFor="let s of supplierList" (click)="dialogRef.close(s)">
+        <td class="mat-cell">{{ s.name }}</td>
+        <td class="mat-cell">{{ s.accountNumber }}</td>
+        <td class="mat-cell">{{ s.taxOffice }}</td>
+        <td class="mat-cell">{{ s.taxNumber }}</td>
+        <td class="mat-cell">{{ s.expiry }}</td>
       </tr>
     </tbody>
   </table>
-</div>  
+</div>
