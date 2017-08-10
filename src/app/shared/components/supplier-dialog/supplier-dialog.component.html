@@ -20,19 +20,15 @@
     <thead>
       <tr class="table-related mat-header-row">
         <th class="mat-header-cell">Satıcı Adı</th>
-        <th class="mat-header-cell">Muhasebe Kodu</th>
-        <th class="mat-header-cell">Vergi Dairesi</th>
-        <th class="mat-header-cell">Vergi No</th>
-        <th class="mat-header-cell">Vade</th>
+        <th class="mat-header-cell" fxFlex="25">Vergi No</th>
+        <th class="mat-header-cell" fxFlex="5">Vade</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="table-related mat-row" *ngFor="let s of supplierList" (click)="dialogRef.close(s)">
+      <tr class="table-related mat-row" *ngFor="let s of supplierList" (click)="dialogRef.close(s)" style="cursor: pointer;">
         <td class="mat-cell">{{ s.name }}</td>
-        <td class="mat-cell">{{ s.accountNumber }}</td>
-        <td class="mat-cell">{{ s.taxOffice }}</td>
-        <td class="mat-cell">{{ s.taxNumber }}</td>
-        <td class="mat-cell">{{ s.expiry }}</td>
+        <td class="mat-cell" fxFlex="25">{{ s.taxNumber }}</td>
+        <td class="mat-cell" fxFlex="5">{{ s.expiry }}</td>
       </tr>
     </tbody>
   </table>

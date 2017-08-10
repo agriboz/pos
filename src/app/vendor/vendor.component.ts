@@ -298,7 +298,9 @@ export class VendorComponent implements OnInit {
 
   calculatePaymentDate() {
     if (this.item && this.item.supplier && this.item.invoiceDate) {
-      this.item.paymentDate = new Date(this.item.invoiceDate.setDate(this.item.supplier.expiry));
+      const invoiceDate: Date = this.item.invoiceDate;
+      invoiceDate.setDate(invoiceDate.getDate() + this.item.supplier.expiry);
+      this.item.paymentDate = invoiceDate;
     }
   }
 }
