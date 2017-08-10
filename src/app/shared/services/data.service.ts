@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-
-import 'rxjs/add/operator/toPromise';
 
 import {
   CommonList,
@@ -12,10 +10,6 @@ import {
   SupplierSearch,
   Supplier
 } from '../models/index';
-
-import {
-  RequestOptions
-} from '@angular/http';
 
 @Injectable()
 export class DataService {
