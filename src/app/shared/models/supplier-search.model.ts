@@ -1,4 +1,5 @@
 export class SupplierSearch {
-    name: string;
-    accountNumber: string;
+    companyId: number;
+    name: string = '';
+    accountNumber: string = '';
 }

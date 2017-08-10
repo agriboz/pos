@@ -1,0 +1,25 @@
+<div class="form-viewer-wrapper">
+  <div class="form-viewer-title">
+    <div class="form-viewer-title-spacer">Fatura Kalemi Ekle</div>
+  </div>
+
+  <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+    <md-input-container>
+      <textarea mdInput placeholder="Açıklama" [(ngModel)]="item.description" required></textarea>
+    </md-input-container>
+    <md-select fxFlex="25" placeholder="Vergi" name="taxGroup" [(ngModel)]="item.taxGroup">
+      <md-option *ngFor="let t of taxGroups" [value]="t">{{ t.name }}
+      </md-option>
+    </md-select>
+    <md-input-container>
+      <input mdInput placeholder="Vergi Tutarı" [(ngModel)]="item.taxAmount" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Matrah" [(ngModel)]="item.amount" />
+    </md-input-container>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="form-viewer-body">
+      <button type="button" md-raised-button (click)="dialogRef.close(item)" color="primary">Ekle</button>
+  </div>
+</div>  

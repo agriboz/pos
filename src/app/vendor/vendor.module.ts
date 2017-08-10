@@ -16,6 +16,7 @@ import { DistributionGridComponent } from './distribution-grid/distribution-grid
 import { DocumentGridComponent } from '../shared/components/document-grid/document-grid.component';
 import { SupplierDialogComponent } from '../shared/components/supplier-dialog/supplier-dialog.component';
 import { DocumentStatePipe } from "app/shared/components/document-grid/document-state.pipe";
+import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-dialog.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import { DocumentStatePipe } from "app/shared/components/document-grid/document-
     VendorRoutingModule,
   ],
   entryComponents: [
-    DistributionComponent
+    DistributionComponent,
+    SupplierDialogComponent,
+    InvoiceItemDialogComponent
   ],
   providers: [
     DialogService
@@ -42,7 +45,8 @@ import { DocumentStatePipe } from "app/shared/components/document-grid/document-
     DistributionGridComponent,
     DocumentGridComponent,
     SupplierDialogComponent,
-    DocumentStatePipe
+    DocumentStatePipe,
+    InvoiceItemDialogComponent
   ]
 })
 export class VendorModule { }

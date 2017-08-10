@@ -1,8 +1,39 @@
-<div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-  <md-input-container>
-    <input mdInput placeholder="Satıcı Adı" [value]="item.name" />
-  </md-input-container>
-  <md-input-container>
-    <input mdInput placeholder="Muhasebe Kodu" [value]="item.accountNumber" />
-  </md-input-container>
-</div>
+<div class="form-viewer-wrapper">
+  <div class="form-viewer-title">
+    <div class="form-viewer-title-spacer">Satıcı Ara</div>
+  </div>
+
+  <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+    <md-input-container>
+      <input mdInput placeholder="Satıcı Adı" [(ngModel)]="item.name" />
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Muhasebe Kodu" [(ngModel)]="item.accountNumber" />
+    </md-input-container>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="form-viewer-body">
+      <button type="button" md-raised-button (click)="searchSupplier()" color="primary">Ara</button>
+  </div>
+
+  <table *ngIf="!!supplierList.length">
+    <thead>
+      <tr>
+        <th>Satıcı Adı</th>
+        <th>Muhasebe Kodu</th>
+        <th>Vergi Dairesi</th>
+        <th>Vergi No</th>
+        <th>Vade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of supplierList" (click)="dialogRef.close(s)">
+        <td>{{ s.name }}</td>
+        <td>{{ s.accountNumber }}</td>
+        <td>{{ s.taxOffice }}</td>
+        <td>{{ s.taxNumber }}</td>
+        <td>{{ s.expiry }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>  

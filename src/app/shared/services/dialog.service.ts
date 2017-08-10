@@ -6,6 +6,7 @@ import { MdDialog } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { SupplierDialogComponent } from '../components/supplier-dialog/supplier-dialog.component';
+import { InvoiceItemDialogComponent } from '../../vendor/invoice-item-dialog/invoice-item-dialog.component';
 
 @Injectable()
 export class DialogService {
@@ -36,8 +37,26 @@ export class DialogService {
 
         return dialogRef.afterClosed();
     }
-    searchSupplier(): Observable<any> {
+    searchSupplier(companyId: number): Observable<any> {
         let dialogRef = this.dialog.open(SupplierDialogComponent);
+
+        dialogRef.componentInstance
+            .onSearchSupplier
+            .flatMap(data => { 
+                data.companyId = companyId;
+                return this.dataservice.getSupplierList(data);
+            })
+            .subscribe(data => dialogRef.componentInstance.supplierList = data);
+
+        return dialogRef.afterClosed();
+    }
+    addInvoiceItem(companyId: number) {
+        let dialogRef = this.dialog.open(InvoiceItemDialogComponent);
+
+        this.dataservice
+            .getTaxGroups(companyId)
+            .subscribe(data => dialogRef.componentInstance.taxGroups = data);        
+
         return dialogRef.afterClosed();
     }
 }

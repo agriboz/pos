@@ -8,7 +8,9 @@ import {
   CommonList,
   StringCommonList,
   VendorPayment,
-  Result
+  Result,
+  SupplierSearch,
+  Supplier
 } from '../models/index';
 
 import {
@@ -148,6 +150,17 @@ export class DataService {
 
   deleteVendorPaymentDocument(documentId: number): Observable<Result> {
     return this.http.delete('Document/' + documentId.toString()).map((response: Response) => {
+      return response.json().data;
+    }).catch(this.handleError);
+  }
+
+  getSupplierList(supplierSearch: SupplierSearch): Observable<Supplier[]> {
+    let url: string = 'Suppliers/';
+    url += '?CompanyId=' + supplierSearch.companyId;
+    url += '&AccountNumber=' + supplierSearch.accountNumber;
+    url += '&Name=' + supplierSearch.name;
+
+    return this.http.get(url).map((response: Response) => {
       return response.json().data;
     }).catch(this.handleError);
   }

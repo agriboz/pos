@@ -4,7 +4,10 @@
       <div class="form-viewer-title-spacer">Genel Bilgiler</div>
     </div>
 
-    <app-description [companies]="companies" [currencies]="currencies" [item]="item" (onCompanyChanged)="companyChanged($event)">
+    <app-description [companies]="companies" 
+                     [currencies]="currencies"
+                     [item]="item"
+                     (onCompanyChanged)="companyChanged($event)">
     </app-description>
 
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
@@ -30,17 +33,20 @@
 </div>
 
 <app-supplier [item]="item.supplier" 
-              [routeState]="routeState">
+              [routeState]="routeState"
+              (onSearchSupplier)="searchSupplier()">
 </app-supplier>
 
 <app-invoice-detail [item]="item" 
                     [stoppageAccounts]="stoppageAccounts"
-                    [routeState]="routeState">
+                    [routeState]="routeState"
+                    (onInvoiceDateChange)="calculatePaymentDate()">
 </app-invoice-detail>
 
 <app-collapsible-well [invoiceItems]="item.invoiceItems"
                       [routeState]="routeState"
-                      (onAddDistribution)="addDistribution($event)">
+                      (onAddDistribution)="addDistribution($event)"
+                      (onAddInvoiceItem)="addInvoiceItem($event)">
 </app-collapsible-well>
 
 <app-document-grid [documents]="item.documents"

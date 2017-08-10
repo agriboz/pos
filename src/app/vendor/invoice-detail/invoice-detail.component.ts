@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import {
   VendorPayment,
@@ -16,10 +16,14 @@ export class InvoiceDetailComponent implements OnInit {
   @Input() item: VendorPayment;
   @Input() stoppageAccounts: CommonList[] = [];
   @Input() routeState: VendorRoute;
-  
+  @Output() onInvoiceDateChange: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  invoiceDateChanged() {
+    this.onInvoiceDateChange.emit();
+  }
 }
