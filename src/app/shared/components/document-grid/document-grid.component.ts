@@ -36,6 +36,6 @@ export class DocumentGridComponent implements OnInit {
 
   fileChange(e) {
     this.onFileChanged.emit(e);
-    this.fileInput.nativeElement.value = "";
+    this.fileInput.nativeElement.value = '';
   }
 }

@@ -3,9 +3,11 @@ import { ModuleDocument, ModuleDocumentState } from '../../models/index';
 
 @Pipe({ name: 'exclude' })
 export class DocumentStatePipe implements PipeTransform {
-    public transform(values: ModuleDocument[]): ModuleDocument[] {
-        if (!values || !values.length) return [];
-    
-        return values.filter(x => x.state != ModuleDocumentState.Deleted);
+    public transform(values) {
+      if (!values || !values.length) {
+        return [];
+      }
+
+      return values.filter(x => x.state !== ModuleDocumentState.Deleted);
     }
 }

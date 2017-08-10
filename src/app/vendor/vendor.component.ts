@@ -261,14 +261,13 @@ export class VendorComponent implements OnInit {
 
       this.item.documents = [...this.item.documents, document];
     }
-  } 
+  }
 
   fileRemoved(e: ModuleDocument) {
     if (e.state == ModuleDocumentState.Added) {
       let index: number = this.item.documents.indexOf(e);
       this.item.documents.splice(index, 1);
-    }
-    else {
+    } else {
       e.state = ModuleDocumentState.Deleted;
     }
   }

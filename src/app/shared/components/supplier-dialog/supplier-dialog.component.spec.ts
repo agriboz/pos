@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
 
 import { SupplierDialogComponent } from './supplier-dialog.component';
 
@@ -8,6 +10,7 @@ describe('SupplierDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ MaterialModule, BrowserAnimationsModule ],
       declarations: [ SupplierDialogComponent ]
     })
     .compileComponents();
