@@ -3,8 +3,9 @@
     <div class="form-viewer-title">
       <div class="form-viewer-title-spacer">Fatura Kalemleri</div>
     </div>
-
-    <button md-raised-button (click)="addInvoiceItem()" *ngIf="routeState==0" color="primary">Ekle</button>
+    <div fxLayout="row" class="form-viewer-body" style="padding: 20px 30px 0" fxLayoutAlign="end center" fxLayoutGap="10px" fxLayoutWrap>
+      <button md-raised-button (click)="addInvoiceItem()" *ngIf="routeState==0" color="primary">Ekle</button>
+    </div>
 
     <div class="form-viewer-body">
       <div fxLayout="column">
