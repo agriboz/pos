@@ -47,7 +47,9 @@ describe('DocumentGridComponent', () => {
       state: 2,
       file: null
     }
+
     const documents = component.documents;
+
     documents.push(documentModel)
 
     fixture.detectChanges();

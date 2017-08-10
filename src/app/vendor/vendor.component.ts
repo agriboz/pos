@@ -54,7 +54,7 @@ export class VendorComponent implements OnInit {
     sessionStorage.clear();
 
     if (userName != undefined) {
-      sessionStorage.setItem("userName", userName);
+      sessionStorage.setItem('userName', userName);
     }
 
     switch (this.routeState) {
@@ -238,7 +238,6 @@ export class VendorComponent implements OnInit {
   }
 
   raiseToastr(result: Result) {
-    //if (!result.isSucceeded)
     this.toastr.showToaster(result.message);
   }
 
@@ -275,7 +274,7 @@ export class VendorComponent implements OnInit {
   searchSupplier() {
     this.dialogservice
       .searchSupplier(this.item.company.id)
-      .subscribe(data =>  { 
+      .subscribe(data =>  {
         if (data) {
           this.item.supplier = data;
           this.calculatePaymentDate();
@@ -298,9 +297,7 @@ export class VendorComponent implements OnInit {
   }
 
   calculatePaymentDate() {
-    console.log(this.item);
-    if (this.item && this.item.supplier && this.item.invoiceDate) { 
-      console.log(this.item);
+    if (this.item && this.item.supplier && this.item.invoiceDate) {
       this.item.paymentDate = new Date(this.item.invoiceDate.setDate(this.item.supplier.expiry));
     }
   }

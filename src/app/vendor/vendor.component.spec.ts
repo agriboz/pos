@@ -71,4 +71,22 @@ describe('VendorComponent', () => {
 
   });
 
+  it(`ìt should have 'isSent' false`, async(() => {
+    component['item'].isSent = true;
+    component.save()
+    fixture.detectChanges();
+
+    expect(component['item'].isSent).toBe(false)
+
+  }));
+
+  it(`ìt should have 'isSent' true`, async(() => {
+    component['item'].isSent = false;
+    component.startFlow();
+    fixture.detectChanges();
+
+    expect(component['item'].isSent).toBe(true)
+
+  }));
+
 });
