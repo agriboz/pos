@@ -26,7 +26,7 @@
     </div>
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>
-        <input mdInput placeholder="Toplam Tutar" [value]="item.totalAmount" disabled />
+        <input mdInput placeholder="Toplam Tutar" [ngModel]="item.totalAmount" disabled />
       </md-input-container>
     </div>
   </div>
@@ -60,6 +60,5 @@
     <button md-raised-button (click)="save()">Kaydet</button>
     <button md-raised-button (click)="approve()" color="primary" *ngIf="!!item.flowId">Onayla</button>
     <button md-raised-button (click)="reject()" color="warn" *ngIf="!!item.flowId">Reddet</button>
-    <!-- <button md-raised-button (click)="newRecord()">Yeni Kayıt</button> -->
   </div>
 </div>

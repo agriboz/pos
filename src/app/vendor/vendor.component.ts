@@ -155,6 +155,8 @@ export class VendorComponent implements OnInit {
           if (!invoiceItem.distributionDetails)
             invoiceItem.distributionDetails = [];
 
+          console.log(data);
+
           invoiceItem.distributionDetails = [...invoiceItem.distributionDetails, data];
           this.toastr.showToaster('İşlem Başarılı');
         }
@@ -239,10 +241,6 @@ export class VendorComponent implements OnInit {
 
   raiseToastr(result: Result) {
     this.toastr.showToaster(result.message);
-  }
-
-  newRecord() {
-
   }
 
   fileChanged(e) {

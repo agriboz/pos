@@ -15,7 +15,7 @@
         </md-option>
       </md-select>
       <md-input-container>
-        <input mdInput placeholder="Adet" [value]="item.quantity" />
+        <input mdInput type="number" placeholder="Adet" [(ngModel)]="item.quantity" />
       </md-input-container>
     </div>
     <div *ngIf="item.isInternal">
