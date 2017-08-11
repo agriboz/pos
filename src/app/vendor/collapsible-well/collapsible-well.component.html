@@ -24,7 +24,7 @@
               <div class="mat-cell" fxFlex="50">{{ i.description }} (%{{ i.taxGroup.name }})</div>
               <div class="mat-cell" fxFlex="10">{{ i.taxAmount }}</div>
               <div class="mat-cell" fxFlex="10">{{ i.amount }}</div>
-              <div class="mat-cell" fxFlex="10">{{ i.taxAmount + i.amount }}</div>
+              <div class="mat-cell" fxFlex="10">{{ i.totalAmount }}</div>
               <div class="mat-cell" fxFlex><button md-raised-button (click)="addDistribution(i)">Dağıtım Kalemi Ekle</button></div>
             </div>
           </div>
