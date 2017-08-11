@@ -1,5 +1,6 @@
 import { 
-    CommonList 
+    CommonList,
+    ItemChangeState
 } from './index';
 
 export class DistributionDetail {
@@ -10,5 +11,6 @@ export class DistributionDetail {
     quantity: number = 0;
     taxAmount: number = 0;
     amount: number = 0;
+    state: ItemChangeState;
     isInternal: boolean = true;
 }

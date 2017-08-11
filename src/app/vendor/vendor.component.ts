@@ -12,7 +12,7 @@ import {
   DistributionDetail,
   Result,
   VendorRoute,
-  ModuleDocumentState,
+  ItemChangeState,
   ModuleDocument
 } from '../shared/models';
 
@@ -160,6 +160,7 @@ export class VendorComponent implements OnInit {
             invoiceItem.distributionDetails = [];
           }
 
+          data.state = ItemChangeState.Added;
           invoiceItem.distributionDetails = [...invoiceItem.distributionDetails, data];
           this.toastr.showToaster('İşlem Başarılı');
         }
@@ -214,7 +215,7 @@ export class VendorComponent implements OnInit {
   syncFiles() {
     this.item.documents.map((item, i) => {
       switch (item.state) {
-        case ModuleDocumentState.Added:
+        case ItemChangeState.Added:
           if (item.isEInvoice) {
             this.dataservice
               .putEinvoiceDocument(this.item.id, this.item.eInvoiceId)
@@ -225,7 +226,7 @@ export class VendorComponent implements OnInit {
               .subscribe();
           }
           break;
-        case ModuleDocumentState.Deleted:
+        case ItemChangeState.Deleted:
           this.dataservice
             .deleteVendorPaymentDocument(item.id)
             .subscribe();
@@ -261,18 +262,18 @@ export class VendorComponent implements OnInit {
       const document: ModuleDocument = new ModuleDocument();
       document.file = fileList[0];
       document.name = this.item.referenceNumber.toString() + '_' + document.file.name;
-      document.state = ModuleDocumentState.Added;
+      document.state = ItemChangeState.Added;
 
       this.item.documents = [...this.item.documents, document];
     }
   }
 
   fileRemoved(e: ModuleDocument) {
-    if (e.state === ModuleDocumentState.Added) {
+    if (e.state === ItemChangeState.Added) {
       const index: number = this.item.documents.indexOf(e);
       this.item.documents.splice(index, 1);
     } else {
-      e.state = ModuleDocumentState.Deleted;
+      e.state = ItemChangeState.Deleted;
     }
   }
 
@@ -299,6 +300,10 @@ export class VendorComponent implements OnInit {
           this.item.invoiceItems = [...this.item.invoiceItems, data];
         }
       });
+  }
+
+  deleteInvoiceItem(i) {
+    i.state = ItemChangeState.Deleted;
   }
 
   calculatePaymentDate() {

@@ -15,7 +15,7 @@ import { CollapsibleWellComponent } from './collapsible-well/collapsible-well.co
 import { DistributionGridComponent } from './distribution-grid/distribution-grid.component';
 import { DocumentGridComponent } from '../shared/components/document-grid/document-grid.component';
 import { SupplierDialogComponent } from '../shared/components/supplier-dialog/supplier-dialog.component';
-import { DocumentStatePipe } from 'app/shared/components/document-grid/document-state.pipe';
+import { ItemStatePipe } from '../shared/pipes/item-state.pipe';
 import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-dialog.component';
 
 @NgModule({
@@ -45,7 +45,7 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     DistributionGridComponent,
     DocumentGridComponent,
     SupplierDialogComponent,
-    DocumentStatePipe,
+    ItemStatePipe,
     InvoiceItemDialogComponent
   ]
 })
