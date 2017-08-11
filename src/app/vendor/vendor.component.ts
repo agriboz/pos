@@ -72,6 +72,7 @@ export class VendorComponent implements OnInit {
         this.getCurrencies();
         this.getDepartments();
         this.item.isManuel = false;
+        this.item.id = 0;
         break;
     }
   }
