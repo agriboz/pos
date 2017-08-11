@@ -142,6 +142,14 @@ export class DataService {
     }).catch(this.handleError);
   }
 
+  putEinvoiceDocument(vendorPaymentId: number, eInvoiceId: number): Observable<Result> {
+    let url: string = 'Einvoice/Document/?paymentId=' + vendorPaymentId.toString() + '&eInvoiceId=' + eInvoiceId.toString();
+
+    return this.http.put(url, {}).map((response: Response) => {
+      return response.json().data;
+    }).catch(this.handleError);
+  }
+
   deleteVendorPaymentDocument(documentId: number): Observable<Result> {
     return this.http.delete('Document/' + documentId.toString()).map((response: Response) => {
       return response.json().data;

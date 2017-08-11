@@ -7,5 +7,6 @@ export class ModuleDocument {
     name: string;
     link: string;
     state: ModuleDocumentState;
+    isEinvoice: boolean;
     file: File;
 }

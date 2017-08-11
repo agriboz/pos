@@ -131,7 +131,7 @@ export class VendorComponent implements OnInit {
       .flatMap(data => this.dataservice.getCurrencies().map(x => this.currencies = x))
       .flatMap(data => this.dataservice.getVendorPaymentByEInvoiceId(eInvoiceId).map(x => this.item = x))
       .flatMap(data => this.dataservice.getStoppageAccounts(data.company.id).map(x => this.stoppageAccounts = x))
-      .subscribe();
+      .subscribe(data => this.item.eInvoiceId = eInvoiceId);
   }
 
   getVendorPaymentById(id: number) {
@@ -154,8 +154,6 @@ export class VendorComponent implements OnInit {
         if (data) {
           if (!invoiceItem.distributionDetails)
             invoiceItem.distributionDetails = [];
-
-          console.log(data);
 
           invoiceItem.distributionDetails = [...invoiceItem.distributionDetails, data];
           this.toastr.showToaster('İşlem Başarılı');
@@ -186,8 +184,6 @@ export class VendorComponent implements OnInit {
   }
 
   sentData() {
-    console.log(this.item);
-
     if (!this.validate())
       return;
 
@@ -214,9 +210,16 @@ export class VendorComponent implements OnInit {
     this.item.documents.map((item, i) => {
       switch(item.state) {
         case ModuleDocumentState.Added:
+        if (item.isEinvoice) {
+          this.dataservice
+            .putEinvoiceDocument(this.item.id, this.item.eInvoiceId)
+            .subscribe();
+        }
+        else {
           this.dataservice
             .putVendorPaymentDocument(this.item.id, item.file)
             .subscribe();
+        }
           break;
         case ModuleDocumentState.Deleted:
           this.dataservice
