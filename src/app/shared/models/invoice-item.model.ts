@@ -9,7 +9,6 @@ export class InvoiceItem {
     taxGroup: CommonList = new CommonList();
     taxAmount: number;
     amount: number;
-    totalAmount: number;
     isVisible: boolean = false;
     distributionDetails: DistributionDetail[] = [];
 }

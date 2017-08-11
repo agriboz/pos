@@ -296,7 +296,6 @@ export class VendorComponent implements OnInit {
             this.item.invoiceItems = [];
           }
 
-          data.totalAmount = data.taxAmount + data.amount;
           this.item.invoiceItems = [...this.item.invoiceItems, data];
         }
       });
