@@ -1,10 +1,11 @@
+<app-angular-loader></app-angular-loader>
 <div class="component-container">
   <div class="form-viewer-wrapper">
     <div class="form-viewer-title">
       <div class="form-viewer-title-spacer">Genel Bilgiler</div>
     </div>
 
-    <app-description [companies]="companies" 
+    <app-description [companies]="companies"
                      [currencies]="currencies"
                      [item]="item"
                      (onCompanyChanged)="companyChanged($event)">
@@ -32,12 +33,12 @@
   </div>
 </div>
 
-<app-supplier [item]="item.supplier" 
+<app-supplier [item]="item.supplier"
               [routeState]="routeState"
               (onSearchSupplier)="searchSupplier()">
 </app-supplier>
 
-<app-invoice-detail [item]="item" 
+<app-invoice-detail [item]="item"
                     [stoppageAccounts]="stoppageAccounts"
                     [routeState]="routeState"
                     (onInvoiceDateChange)="calculatePaymentDate()">

@@ -131,10 +131,10 @@ export class DataService {
   }
 
   putVendorPaymentDocument(vendorPaymentId: number, file: File): Observable<Result> {
-    let formData: FormData = new FormData();  
-    formData.append('uploadFile', file, file.name);  
+    const formData: FormData = new FormData();
+    formData.append('uploadFile', file, file.name);
 
-    let options: RequestOptions = new RequestOptions();
+    const options: RequestOptions = new RequestOptions();
     options.headers = new Headers();
 
     return this.http.put('Document/' + vendorPaymentId.toString(), formData, options).map((response: Response) => {
@@ -143,7 +143,7 @@ export class DataService {
   }
 
   putEinvoiceDocument(vendorPaymentId: number, eInvoiceId: number): Observable<Result> {
-    let url: string = 'Einvoice/Document/?paymentId=' + vendorPaymentId.toString() + '&eInvoiceId=' + eInvoiceId.toString();
+    const url: string = 'Einvoice/Document/?paymentId=' + vendorPaymentId.toString() + '&eInvoiceId=' + eInvoiceId.toString();
 
     return this.http.put(url, {}).map((response: Response) => {
       return response.json().data;
@@ -157,7 +157,7 @@ export class DataService {
   }
 
   getSupplierList(supplierSearch: SupplierSearch): Observable<Supplier[]> {
-    let url: string = 'Suppliers/';
+    let url = 'Suppliers/';
     url += '?CompanyId=' + supplierSearch.companyId;
     url += '&AccountNumber=' + supplierSearch.accountNumber;
     url += '&Name=' + supplierSearch.name;

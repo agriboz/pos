@@ -10,3 +10,4 @@ export * from './module-document.model';
 export * from './module-document-state.enum';
 export * from './supplier-search.model';
 export * from './vendor-route.enum';
+export * from './loader.model';

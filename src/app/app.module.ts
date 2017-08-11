@@ -1,3 +1,5 @@
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { LoaderService } from './shared/components/loader/loader.service';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
@@ -16,7 +18,7 @@ import { httpService } from './http.service';
 import { CdkTableModule } from '@angular/cdk';
 import { ToastrService } from './shared/services/toastr.service';
 import { DialogService } from './shared/services/dialog.service';
-//import 'hammerjs';
+import 'hammerjs';
 
 
 
@@ -44,8 +46,8 @@ const appRoutes: Routes = [
     IndividualModule,
     VendorModule,
     CdkTableModule,
+
   ],
-  exports: [],
   providers: [
     DataService,
     HttpInterceptorService,
@@ -53,7 +55,7 @@ const appRoutes: Routes = [
     {
       provide: Http,
       useFactory: httpService,
-      deps: [XHRBackend, RequestOptions, ToastrService],
+      deps: [XHRBackend, RequestOptions, ToastrService, LoaderService],
     },
   ],
   bootstrap: [AppComponent],
