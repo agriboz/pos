@@ -1,3 +1,5 @@
+import { LoaderService } from './../shared/components/loader/loader.service';
+import { LoaderComponent } from './../shared/components/loader/loader.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +35,8 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     InvoiceItemDialogComponent
   ],
   providers: [
-    DialogService
+    DialogService,
+    LoaderService
   ],
   declarations: [
     VendorComponent,
@@ -46,7 +49,8 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     DocumentGridComponent,
     SupplierDialogComponent,
     ItemStatePipe,
-    InvoiceItemDialogComponent
+    InvoiceItemDialogComponent,
+
   ]
 })
 export class VendorModule { }
