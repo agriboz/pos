@@ -1,5 +1,3 @@
-import { LoaderService } from './../shared/components/loader/loader.service';
-import { LoaderComponent } from './../shared/components/loader/loader.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +15,7 @@ import { CollapsibleWellComponent } from './collapsible-well/collapsible-well.co
 import { DistributionGridComponent } from './distribution-grid/distribution-grid.component';
 import { DocumentGridComponent } from '../shared/components/document-grid/document-grid.component';
 import { SupplierDialogComponent } from '../shared/components/supplier-dialog/supplier-dialog.component';
-import { DocumentStatePipe } from 'app/shared/components/document-grid/document-state.pipe';
+import { ItemStatePipe } from '../shared/pipes/item-state.pipe';
 import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-dialog.component';
 
 @NgModule({
@@ -35,8 +33,7 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     InvoiceItemDialogComponent
   ],
   providers: [
-    DialogService,
-    LoaderService,
+    DialogService
   ],
   declarations: [
     VendorComponent,
@@ -48,9 +45,8 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     DistributionGridComponent,
     DocumentGridComponent,
     SupplierDialogComponent,
-    DocumentStatePipe,
-    InvoiceItemDialogComponent,
-    LoaderComponent
+    ItemStatePipe,
+    InvoiceItemDialogComponent
   ]
 })
 export class VendorModule { }

@@ -10,20 +10,25 @@
     <div class="form-viewer-body">
       <div fxLayout="column">
         <div fxLayout="row" class="table-related mat-header-row">
-          <div class="mat-header-cell" fxFlex>Açıklama</div>
-          <div class="mat-header-cell" fxFlex>Vergi Tutarı</div>
-          <div class="mat-header-cell" fxFlex>Matrah</div>
+          <div class="mat-header-cell" fxFlex="50">Açıklama</div>
+          <div class="mat-header-cell" fxFlex="10">Vergi Tutarı</div>
+          <div class="mat-header-cell" fxFlex="10">Matrah</div>
+          <div class="mat-header-cell" fxFlex="10">Toplam</div>
           <div class="mat-header-cell" fxFlex></div>
         </div>
       </div>
       <div fxLayout="column">
-        <div *ngFor="let i of invoiceItems" (click)="toggleContent(i)">
+        <div *ngFor="let i of invoiceItems | exclude" (click)="toggleContent(i)">
           <div fxLayout="column">
             <div fxLayout="row" class="table-related mat-row">
-              <div class="mat-cell" fxFlex>{{ i.description }} (%{{ i.taxGroup.name }})</div>
-              <div class="mat-cell" fxFlex>{{ i.taxAmount }}</div>
-              <div class="mat-cell" fxFlex>{{ i.amount }}</div>
-              <div class="mat-cell" fxFlex><button md-raised-button (click)="addDistribution(i)">Dağıtım Kalemi Ekle</button></div>
+              <div class="mat-cell" fxFlex="50">{{ i.description }} (%{{ i.taxGroup.name }})</div>
+              <div class="mat-cell" fxFlex="10">{{ i.taxAmount }}</div>
+              <div class="mat-cell" fxFlex="10">{{ i.amount }}</div>
+              <div class="mat-cell" fxFlex="10">{{ i.totalAmount }}</div>
+              <div class="mat-cell" fxFlex>
+                <button md-raised-button (click)="addDistribution(i)">Dağıtım Kalemi Ekle</button>
+                <button md-raised-button (click)="deleteInvoiceItem(i)" *ngIf="routeState==0">Sil</button>
+              </div>
             </div>
           </div>
           <div fxLayout="column" *ngIf="i.isVisible">

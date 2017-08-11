@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import {
-  DistributionDetail
+  DistributionDetail,
+  ItemChangeState
 } from '../../shared/models';
 
 @Component({
@@ -43,6 +43,10 @@ export class DistributionGridComponent implements OnInit {
       item.taxAmount = this.taxAmount / this.sumQuantity * item.quantity;
       item.amount = this.amount / this.sumQuantity * item.quantity;
     });
+  }
+
+  deleteDistribution(d: DistributionDetail) {
+    d.state = ItemChangeState.Deleted;
   }
 
 }

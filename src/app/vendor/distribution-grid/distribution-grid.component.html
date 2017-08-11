@@ -7,16 +7,18 @@
       <th class="mat-header-cell">Adet</th>
       <th class="mat-header-cell">Vergi Tutarı</th>
       <th class="mat-header-cell">Matrah</th>
+      <th class="mat-header-cell"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of distributionDetails" class="mat-row">
+    <tr *ngFor="let d of distributionDetails | exclude" class="mat-row">
       <td class="mat-cell">{{ d.account.name }}</td>
-      <td class="mat-cell">{{ d.costCenter.name }}</td>
-      <td class="mat-cell">{{ d.internalOrder.name }}</td>
+      <td class="mat-cell">{{ d.costCenter?.name }}</td>
+      <td class="mat-cell">{{ d.internalOrder?.name }}</td>
       <td class="mat-cell">{{ d.quantity }}</td>
       <td class="mat-cell">{{ d.taxAmount | number:'1.0-2' }}</td>
       <td class="mat-cell">{{ d.amount | number:'1.0-2' }}</td>
+      <td class="mat-cell"><button md-raised-button (click)="deleteDistribution(d)">Sil</button></td>
     </tr>
   </tbody>
 </table>

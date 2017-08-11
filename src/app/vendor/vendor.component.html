@@ -47,7 +47,8 @@
 <app-collapsible-well [invoiceItems]="item.invoiceItems"
                       [routeState]="routeState"
                       (onAddDistribution)="addDistribution($event)"
-                      (onAddInvoiceItem)="addInvoiceItem($event)">
+                      (onAddInvoiceItem)="addInvoiceItem($event)"
+                      (onDeleteInvoiceItem)="deleteInvoiceItem($event)">
 </app-collapsible-well>
 
 <app-document-grid [documents]="item.documents"

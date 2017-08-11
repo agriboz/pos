@@ -1,11 +1,11 @@
 import { Component, Input, Output, OnInit, ViewChild, Pipe, EventEmitter } from '@angular/core';
 
-import { DocumentStatePipe } from './document-state.pipe';
+import { ItemStatePipe } from '../../pipes/item-state.pipe';
 import { environment } from '../../../environments/environment';
 
 import {
   ModuleDocument,
-  ModuleDocumentState,
+  ItemChangeState,
   VendorPayment
 } from '../../models/index';
 

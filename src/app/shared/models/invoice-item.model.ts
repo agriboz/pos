@@ -1,6 +1,7 @@
 import { 
     CommonList, 
-    DistributionDetail 
+    DistributionDetail,
+    ItemChangeState 
 } from './index';
 
 export class InvoiceItem {
@@ -9,6 +10,8 @@ export class InvoiceItem {
     taxGroup: CommonList = new CommonList();
     taxAmount: number;
     amount: number;
+    totalAmount: number;
+    state: ItemChangeState;
     isVisible: boolean = false;
     distributionDetails: DistributionDetail[] = [];
 }

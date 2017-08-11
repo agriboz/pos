@@ -12,7 +12,7 @@ import {
   DistributionDetail,
   Result,
   VendorRoute,
-  ModuleDocumentState,
+  ItemChangeState,
   ModuleDocument
 } from '../shared/models';
 
@@ -53,7 +53,7 @@ export class VendorComponent implements OnInit {
 
     sessionStorage.clear();
 
-    if (userName != undefined) {
+    if (userName !== undefined) {
       sessionStorage.setItem('userName', userName);
     }
 
@@ -72,23 +72,27 @@ export class VendorComponent implements OnInit {
         this.getCurrencies();
         this.getDepartments();
         this.item.isManuel = false;
+        this.item.id = 0;
         break;
     }
   }
 
   validate() {
-    let errors: string[] = [];
+    const errors: string[] = [];
 
-    if (!this.item.description)
-      errors.push("Açıklama alanı boş geçilemez");
-    if (!this.item.department || !this.item.department.id)
-      errors.push("Departman alanı boş geçilemez");
-    if (!this.item.invoiceItems || this.item.invoiceItems.some(x => !x.distributionDetails))
-      errors.push("Dağıtım kalemleri girilmeden kayıt işlemi yapıalamz");
+    if (!this.item.description) {
+      errors.push('Açıklama alanı boş geçilemez');
+    }
+    if (!this.item.department || !this.item.department.id) {
+      errors.push('Departman alanı boş geçilemez');
+    }
+    if (!this.item.invoiceItems || this.item.invoiceItems.some(x => !x.distributionDetails)) {
+      errors.push('Dağıtım kalemleri girilmeden kayıt işlemi yapıalamz');
+    }
 
     this.toastr.showToaster(errors.join(' // '));
 
-    return errors.length == 0;
+    return errors.length === 0;
   }
 
   getCompanies() {
@@ -152,9 +156,11 @@ export class VendorComponent implements OnInit {
       .addDistribution(companyId, invoiceItem.id)
       .subscribe(data => {
         if (data) {
-          if (!invoiceItem.distributionDetails)
+          if (!invoiceItem.distributionDetails) {
             invoiceItem.distributionDetails = [];
+          }
 
+          data.state = ItemChangeState.Added;
           invoiceItem.distributionDetails = [...invoiceItem.distributionDetails, data];
           this.toastr.showToaster('İşlem Başarılı');
         }
@@ -184,18 +190,18 @@ export class VendorComponent implements OnInit {
   }
 
   sentData() {
-    if (!this.validate())
+    if (!this.validate()) {
       return;
+    }
 
-    if (this.item.id != 0) {
+    if (this.item.id !== 0) {
       this.dataservice
         .putVendorPayment(this.item)
         .subscribe(data => {
           this.raiseToastr(data)
           this.syncFiles();
         });
-    }
-    else {
+    } else {
       this.dataservice
         .postVendorPayment(this.item)
         .subscribe(data => {
@@ -208,20 +214,19 @@ export class VendorComponent implements OnInit {
 
   syncFiles() {
     this.item.documents.map((item, i) => {
-      switch(item.state) {
-        case ModuleDocumentState.Added:
-        if (item.isEinvoice) {
-          this.dataservice
-            .putEinvoiceDocument(this.item.id, this.item.eInvoiceId)
-            .subscribe();
-        }
-        else {
-          this.dataservice
-            .putVendorPaymentDocument(this.item.id, item.file)
-            .subscribe();
-        }
+      switch (item.state) {
+        case ItemChangeState.Added:
+          if (item.isEInvoice) {
+            this.dataservice
+              .putEinvoiceDocument(this.item.id, this.item.eInvoiceId)
+              .subscribe();
+          } else {
+            this.dataservice
+              .putVendorPaymentDocument(this.item.id, item.file)
+              .subscribe();
+          }
           break;
-        case ModuleDocumentState.Deleted:
+        case ItemChangeState.Deleted:
           this.dataservice
             .deleteVendorPaymentDocument(item.id)
             .subscribe();
@@ -251,24 +256,24 @@ export class VendorComponent implements OnInit {
       this.item.documents = [];
     }
 
-    let fileList: FileList = e.target.files;
+    const fileList: FileList = e.target.files;
 
     if (fileList.length > 0) {
-      let document: ModuleDocument = new ModuleDocument();
+      const document: ModuleDocument = new ModuleDocument();
       document.file = fileList[0];
       document.name = this.item.referenceNumber.toString() + '_' + document.file.name;
-      document.state = ModuleDocumentState.Added;
+      document.state = ItemChangeState.Added;
 
       this.item.documents = [...this.item.documents, document];
     }
   }
 
   fileRemoved(e: ModuleDocument) {
-    if (e.state == ModuleDocumentState.Added) {
-      let index: number = this.item.documents.indexOf(e);
+    if (e.state === ItemChangeState.Added) {
+      const index: number = this.item.documents.indexOf(e);
       this.item.documents.splice(index, 1);
     } else {
-      e.state = ModuleDocumentState.Deleted;
+      e.state = ItemChangeState.Deleted;
     }
   }
 
@@ -295,6 +300,10 @@ export class VendorComponent implements OnInit {
           this.item.invoiceItems = [...this.item.invoiceItems, data];
         }
       });
+  }
+
+  deleteInvoiceItem(i) {
+    i.state = ItemChangeState.Deleted;
   }
 
   calculatePaymentDate() {

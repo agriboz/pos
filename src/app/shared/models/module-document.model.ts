@@ -1,12 +1,12 @@
 import {
-    ModuleDocumentState
+    ItemChangeState
   } from './index';
 
 export class ModuleDocument {
     id: number;
     name: string;
     link: string;
-    state: ModuleDocumentState;
-    isEinvoice: boolean;
+    state: ItemChangeState;
+    isEInvoice: boolean;
     file: File;
 }

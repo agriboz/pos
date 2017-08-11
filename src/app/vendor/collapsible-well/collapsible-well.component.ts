@@ -3,7 +3,8 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import {
   InvoiceItem,
   DistributionDetail,
-  VendorRoute
+  VendorRoute,
+  ItemChangeState
 } from '../../shared/models';
 
 @Component({
@@ -17,8 +18,15 @@ export class CollapsibleWellComponent implements OnInit {
   @Input() routeState: VendorRoute;
   @Output() onAddDistribution: EventEmitter<any> = new EventEmitter();
   @Output() onAddInvoiceItem: EventEmitter<any> = new EventEmitter();
+  @Output() onDeleteInvoiceItem: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
+
+  ngOnChanges() {
+    this.invoiceItems.map((item, i) => {
+      item.totalAmount = item.amount + item.taxAmount;
+    });
+  }
 
   ngOnInit() {
   }
@@ -31,7 +39,11 @@ export class CollapsibleWellComponent implements OnInit {
     this.onAddDistribution.emit(e);
   }
 
-  addInvoiceItem() { 
+  addInvoiceItem() {
     this.onAddInvoiceItem.emit();
+  }
+
+  deleteInvoiceItem(i) {
+    this.onDeleteInvoiceItem.emit(i);
   }
 }
