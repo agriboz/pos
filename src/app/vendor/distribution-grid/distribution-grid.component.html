@@ -12,8 +12,8 @@
   <tbody>
     <tr *ngFor="let d of distributionDetails" class="mat-row">
       <td class="mat-cell">{{ d.account.name }}</td>
-      <td class="mat-cell">{{ d.costCenter.name }}</td>
-      <td class="mat-cell">{{ d.internalOrder.name }}</td>
+      <td class="mat-cell">{{ d.costCenter?.name }}</td>
+      <td class="mat-cell">{{ d.internalOrder?.name }}</td>
       <td class="mat-cell">{{ d.quantity }}</td>
       <td class="mat-cell">{{ d.taxAmount | number:'1.0-2' }}</td>
       <td class="mat-cell">{{ d.amount | number:'1.0-2' }}</td>
