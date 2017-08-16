@@ -12,14 +12,14 @@
       </md-option>
     </md-select>
     <md-input-container>
-      <input mdInput placeholder="Vergi Tutarı" [(ngModel)]="item.taxAmount" />
+      <input mdInput placeholder="Vergi Tutarı" type="number" [(ngModel)]="item.taxAmount" />
     </md-input-container>
     <md-input-container>
-      <input mdInput placeholder="Matrah" [(ngModel)]="item.amount" />
+      <input mdInput placeholder="Matrah" type="number" [(ngModel)]="item.amount" />
     </md-input-container>
   </div>
 
   <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="form-viewer-body">
       <button type="button" md-raised-button (click)="dialogRef.close(item)" color="primary">Ekle</button>
   </div>
-</div>  
+</div>

@@ -18,7 +18,7 @@
       <td class="mat-cell">{{ d.quantity }}</td>
       <td class="mat-cell">{{ d.taxAmount | number:'1.0-2' }}</td>
       <td class="mat-cell">{{ d.amount | number:'1.0-2' }}</td>
-      <td class="mat-cell"><button md-raised-button (click)="deleteDistribution(d)">Sil</button></td>
+      <td class="mat-cell" fxLayoutAlign="end end"><button md-raised-button (click)="deleteDistribution(d)">Sil</button></td>
     </tr>
   </tbody>
 </table>
