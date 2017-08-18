@@ -32,7 +32,7 @@ export class CollapsibleWellComponent implements OnInit, OnChanges {
   ngOnChanges() {
     console.log(this.invoiceItems);
     this.invoiceItems.map((item, i) => {
-      item.totalAmount = item.amount + item.taxAmount;
+      item.totalAmount = parseFloat(item.amount.toString()) + parseFloat(item.taxAmount.toString());
     });
   }
 
