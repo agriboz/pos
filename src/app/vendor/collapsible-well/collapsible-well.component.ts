@@ -1,4 +1,11 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  OnInit,
+  EventEmitter,
+  OnChanges,
+} from '@angular/core';
 
 import {
   InvoiceItem,
@@ -12,7 +19,7 @@ import {
   templateUrl: './collapsible-well.component.html',
   styleUrls: ['./collapsible-well.component.css']
 })
-export class CollapsibleWellComponent implements OnInit {
+export class CollapsibleWellComponent implements OnInit, OnChanges {
 
   @Input() invoiceItems: InvoiceItem[] = [];
   @Input() routeState: VendorRoute;
@@ -23,6 +30,7 @@ export class CollapsibleWellComponent implements OnInit {
   constructor() { }
 
   ngOnChanges() {
+    console.log(this.invoiceItems);
     this.invoiceItems.map((item, i) => {
       item.totalAmount = item.amount + item.taxAmount;
     });
@@ -43,7 +51,8 @@ export class CollapsibleWellComponent implements OnInit {
     this.onAddInvoiceItem.emit();
   }
 
-  deleteInvoiceItem(i) {
-    this.onDeleteInvoiceItem.emit(i);
+  deleteInvoiceItem(item, index) {
+    console.log(index);
+    this.onDeleteInvoiceItem.emit({item, index});
   }
 }

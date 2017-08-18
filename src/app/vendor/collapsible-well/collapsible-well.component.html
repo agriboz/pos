@@ -18,7 +18,7 @@
         </div>
       </div>
       <div fxLayout="column">
-        <div style="position:relative" *ngFor="let i of invoiceItems | exclude" >
+        <div style="position:relative" *ngFor="let i of invoiceItems | exclude; let index=index" >
           <div fxLayout="column" (click)="toggleContent(i)">
             <div fxLayout="row" class="table-related mat-row">
               <div class="mat-cell" fxFlex="50">{{ i.description }} (%{{ i.taxGroup.name }})</div>
@@ -29,7 +29,7 @@
           </div>
                   <div class="mat-cell" style="position:absolute; right: 20px; top: 5px" fxFlex>
                     <button md-raised-button (click)="addDistribution(i)">Dağıtım Kalemi Ekle</button>
-                    <button md-raised-button (click)="deleteInvoiceItem(i)" *ngIf="routeState==0">Sil</button>
+                    <button md-raised-button (click)="deleteInvoiceItem(i, index)" *ngIf="routeState==0">Sil</button>
                   </div>
           <div fxLayout="column" *ngIf="i.isVisible">
             <app-distribution-grid [distributionDetails]="i.distributionDetails"

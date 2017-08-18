@@ -302,8 +302,12 @@ export class VendorComponent implements OnInit {
       });
   }
 
-  deleteInvoiceItem(i) {
-    i.state = ItemChangeState.Deleted;
+  deleteInvoiceItem(item) {
+    item.state = ItemChangeState.Deleted;
+    this.item.invoiceItems = [
+      ...this.item.invoiceItems.slice(0, item.index),
+      ...this.item.invoiceItems.slice(item.index + 1)
+    ]
   }
 
   calculatePaymentDate() {
