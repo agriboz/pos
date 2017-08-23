@@ -20,6 +20,13 @@
       <md-input-container>
         <input mdInput placeholder="Ödeme Tarihi" [ngModel]="item.paymentDate | date: 'dd.MM.yyyy'" (ngModelChange)="item.paymentDate=$event" disabled />
       </md-input-container>
+      <div *ngIf="item.isLastStep">
+        <md-input-container fxFlex>
+          <input mdInput [mdDatepicker]="pickerLastStep" placeholder="İşlem Tarihi" [(ngModel)]="item.processDate">
+          <button mdSuffix [mdDatepickerToggle]="pickerLastStep"></button>
+        </md-input-container>
+        <md-datepicker #pickerLastStep></md-datepicker>
+      </div>
     </div>
     <div fxLayout="row" *ngIf="item" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>

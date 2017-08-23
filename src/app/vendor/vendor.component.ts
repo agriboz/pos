@@ -80,6 +80,10 @@ export class VendorComponent implements OnInit {
   validate() {
     const errors: string[] = [];
 
+    if (!this.item.processDate && this.item.isLastStep) {
+      errors.push('İşlem tarihi alanı boş geçilemez');
+    }
+
     if (!this.item.description) {
       errors.push('Açıklama alanı boş geçilemez');
     }

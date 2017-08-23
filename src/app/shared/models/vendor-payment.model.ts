@@ -29,4 +29,6 @@ export class VendorPayment {
   supplier: Supplier = new Supplier();
   invoiceItems: InvoiceItem[] = [];
   documents: ModuleDocument[] = [];
+  processDate: Date;
+  isLastStep: boolean;
 }

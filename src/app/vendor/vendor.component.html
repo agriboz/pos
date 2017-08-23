@@ -59,7 +59,7 @@
   <div fxLayout="row" class="form-viewer-wrapper no-shadow" fxLayoutAlign="end center" fxLayoutGap="20px">
     <button md-raised-button (click)="startFlow()" color="primary" *ngIf="!item.flowId">Onaya Gönder</button>
     <button md-raised-button (click)="save()">Kaydet</button>
-    <button md-raised-button (click)="approve()" color="primary" *ngIf="!!item.flowId">Onayla</button>
+    <button md-raised-button (click)="approve()" color="primary" *ngIf="!!item.flowId">{{item.isLastStep ? 'Muhasebeleştir' : 'Onayla'}}</button>
     <button md-raised-button (click)="reject()" color="warn" *ngIf="!!item.flowId">Reddet</button>
   </div>
 </div>
