@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import * as moment from 'moment';
+
 import { DistributionComponent } from './distribution/distribution.component';
 import { ToastrService } from '../shared/services/toastr.service'
 
@@ -240,6 +242,7 @@ export class VendorComponent implements OnInit {
   }
 
   approve() {
+    this.item.processDate = moment(this.item.processDate).add('day', 1);
     this.dataservice
       .approveVendorPayment(this.item)
       .subscribe(data => this.raiseToastr(data));
@@ -313,6 +316,8 @@ export class VendorComponent implements OnInit {
       ...this.item.invoiceItems.slice(item.index + 1)
     ]
   }
+
+  processDateChange(e) {}
 
   calculatePaymentDate() {
     if (this.item && this.item.supplier && this.item.invoiceDate) {

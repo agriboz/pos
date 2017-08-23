@@ -18,9 +18,12 @@ export class InvoiceDetailComponent implements OnInit {
   @Input() routeState: VendorRoute;
   @Output() onInvoiceDateChange: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    console.log(this.item.processDate);
+    this.item.processDate = new Date(this.item.processDate);
   }
 
   invoiceDateChanged() {

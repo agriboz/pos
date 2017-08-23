@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '@angular/material'
+import { MaterialModule, DateAdapter } from '@angular/material'
 
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorComponent } from './vendor.component';
@@ -53,4 +53,8 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
 
   ]
 })
-export class VendorModule { }
+export class VendorModule {
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    dateAdapter.setLocale('tr')
+  }
+}
