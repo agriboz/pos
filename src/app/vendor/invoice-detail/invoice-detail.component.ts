@@ -22,7 +22,6 @@ export class InvoiceDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.item.processDate);
     this.item.processDate = new Date(this.item.processDate);
   }
 

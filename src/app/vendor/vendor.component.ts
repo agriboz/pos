@@ -85,7 +85,6 @@ export class VendorComponent implements OnInit {
     if (!this.item.processDate && this.item.isLastStep) {
       errors.push('İşlem tarihi alanı boş geçilemez');
     }
-
     if (!this.item.description) {
       errors.push('Açıklama alanı boş geçilemez');
     }

@@ -78,7 +78,6 @@ export class HttpInterceptorService extends Http {
   }
 
   private showLoader(): void {
-    console.log(this.loaderService);
     this.loaderService.displayLoader(true)
   }
 

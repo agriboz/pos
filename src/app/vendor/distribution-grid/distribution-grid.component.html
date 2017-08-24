@@ -11,14 +11,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of distributionDetails | exclude" class="mat-row">
+    <tr *ngFor="let d of distributionDetails | exclude ; let i = index" class="mat-row">
       <td class="mat-cell">{{ d.account.name }}</td>
       <td class="mat-cell">{{ d.costCenter?.name }}</td>
       <td class="mat-cell">{{ d.internalOrder?.name }}</td>
       <td class="mat-cell">{{ d.quantity }}</td>
       <td class="mat-cell">{{ d.taxAmount | number:'1.0-2' }}</td>
       <td class="mat-cell">{{ d.amount | number:'1.0-2' }}</td>
-      <td class="mat-cell" fxLayoutAlign="end end"><button md-raised-button (click)="deleteDistribution(d)">Sil</button></td>
+      <td class="mat-cell" fxLayoutAlign="end end"><button md-raised-button (click)="deleteDistribution(d, i)">Sil</button></td>
     </tr>
   </tbody>
 </table>

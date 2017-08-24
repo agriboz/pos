@@ -30,9 +30,10 @@ export class CollapsibleWellComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    console.log(this.invoiceItems);
     this.invoiceItems.map((item, i) => {
-      item.totalAmount = parseFloat(item.amount.toString()) + parseFloat(item.taxAmount.toString());
+      const amount: number = isNaN(item.amount) ? 0 : item.amount;
+      const taxAmount: number = isNaN(item.taxAmount) ? 0 : item.taxAmount;
+      item.totalAmount = parseFloat(amount.toString()) + parseFloat(taxAmount.toString());
     });
   }
 
@@ -52,7 +53,6 @@ export class CollapsibleWellComponent implements OnInit, OnChanges {
   }
 
   deleteInvoiceItem(item, index) {
-    console.log(index);
     this.onDeleteInvoiceItem.emit({item, index});
   }
 }
