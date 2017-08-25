@@ -35,7 +35,7 @@ export class DistributionGridComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   calculateQuantity() {
-    this.sumQuantity = this.distributionDetails.reduce((acc, item) => {
+    this.sumQuantity = this.distributionDetails.filter(x => x.state !== ItemChangeState.Deleted).reduce((acc, item) => {
       return (acc += item.quantity);
     }, 0);
   }

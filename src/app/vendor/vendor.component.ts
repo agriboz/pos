@@ -199,6 +199,11 @@ export class VendorComponent implements OnInit {
       return;
     }
 
+    if (this.routeState === VendorRoute.New) {
+      this.item.paymentDate = moment(this.item.paymentDate).add('day', 1).toDate();
+      this.item.invoiceDate = moment(this.item.invoiceDate).add('day', 1).toDate();
+    }
+
     if (this.item.id !== 0) {
       this.dataservice
         .putVendorPayment(this.item)
@@ -316,13 +321,9 @@ export class VendorComponent implements OnInit {
     ]
   }
 
-  processDateChange(e) {}
-
   calculatePaymentDate() {
     if (this.item && this.item.supplier && this.item.invoiceDate) {
-      const invoiceDate: Date = this.item.invoiceDate;
-      invoiceDate.setDate(invoiceDate.getDate() + this.item.supplier.expiry);
-      this.item.paymentDate = invoiceDate;
+      this.item.paymentDate = moment(this.item.invoiceDate).add('day', this.item.supplier.expiry).toDate();
     }
   }
 }

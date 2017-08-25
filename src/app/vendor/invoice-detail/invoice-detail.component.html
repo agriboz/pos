@@ -5,18 +5,13 @@
     </div>
     <div fxLayout="row" *ngIf="item" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>
-        <input mdInput placeholder="Fatura Numarası" [(ngModel)]="item.invoiceNumber" [disabled]="routeState!=0" />
+        <input mdInput placeholder="Fatura Numarası" [(ngModel)]="item.invoiceNumber" />
       </md-input-container>
-      <md-input-container *ngIf="routeState!=0">
-        <input mdInput placeholder="Fatura Tarihi" [value]="item.invoiceDate | date: 'dd.MM.yyyy'" disabled />
+      <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Fatura Tarihi" [(ngModel)]="item.invoiceDate" (ngModelChange)="invoiceDateChanged($event)">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
       </md-input-container>
-      <div *ngIf="routeState==0">
-        <md-input-container fxFlex>
-          <input mdInput [mdDatepicker]="picker" placeholder="Fatura Tarihi" [(ngModel)]="item.invoiceDate" (ngModelChange)="invoiceDateChanged($event)">
-          <button mdSuffix [mdDatepickerToggle]="picker"></button>
-        </md-input-container>
-        <md-datepicker #picker></md-datepicker>
-      </div>
+      <md-datepicker #picker></md-datepicker>
       <md-input-container>
         <input mdInput placeholder="Ödeme Tarihi" [ngModel]="item.paymentDate | date: 'dd.MM.yyyy'" (ngModelChange)="item.paymentDate=$event" disabled />
       </md-input-container>
@@ -43,7 +38,7 @@
         </md-option>
       </md-select>
       <md-input-container>
-        <input mdInput placeholder="Tevkifat Tutarı" [(ngModel)]="item.withHoldingAmount" [disabled]="routeState!=0" />
+        <input mdInput placeholder="Tevkifat Tutarı" [(ngModel)]="item.withHoldingAmount" />
       </md-input-container>
     </div>
   </div>
