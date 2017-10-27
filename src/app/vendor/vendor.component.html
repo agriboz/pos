@@ -1,58 +1,26 @@
-<div class="component-container">
-  <div class="form-viewer-wrapper">
-    <div class="form-viewer-title">
-      <div class="form-viewer-title-spacer">Genel Bilgiler</div>
-    </div>
-
-    <app-description [companies]="companies"
-                     [currencies]="currencies"
-                     [item]="item"
-                     (onCompanyChanged)="companyChanged($event)">
-    </app-description>
-
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department.id" *ngIf="!item.id">
-        <md-option *ngFor="let d of departments" [value]="d.id">{{ d.name }}
-        </md-option>
-      </md-select>
-      <md-input-container fxFlex="25" *ngIf="!!item.id">
-        <input mdInput placeholder="Departman" [value]="item.department.name" disabled />
-      </md-input-container>
-<!--       <div>Aktarım Türü</div>
-      <md-radio-group [(ngModel)]="item.isManuel">
-        <md-radio-button [value]="false">Otomatik</md-radio-button>
-        <md-radio-button [value]="true">Manuel</md-radio-button>
-      </md-radio-group> -->
-    </div>
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-input-container>
-        <input mdInput placeholder="Toplam Tutar" [ngModel]="item.totalAmount" disabled />
-      </md-input-container>
-    </div>
+<app-description [companies]="companies" [currencies]="currencies" [item]="item" (onCompanyChanged)="companyChanged($event)">
+  <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+    <md-select fxFlex="25" placeholder="Departman" name="department" [(ngModel)]="item.department.id" *ngIf="!item.id">
+      <md-option *ngFor="let d of departments" [value]="d.id">{{ d.name }}
+      </md-option>
+    </md-select>
+    <md-input-container fxFlex="25" *ngIf="!!item.id">
+      <input mdInput placeholder="Departman" [value]="item.department.name" disabled />
+    </md-input-container>
   </div>
-</div>
+</app-description>
 
-<app-supplier [item]="item.supplier"
-              [routeState]="routeState"
-              (onSearchSupplier)="searchSupplier()">
+<app-supplier [item]="item" [routeState]="routeState" (onSearchSupplier)="searchSupplier()">
 </app-supplier>
 
-<app-invoice-detail [item]="item"
-                    [stoppageAccounts]="stoppageAccounts"
-                    [routeState]="routeState"
-                    (onInvoiceDateChange)="calculatePaymentDate()">
+<app-invoice-detail [item]="item" [stoppageAccounts]="stoppageAccounts" [routeState]="routeState" (onInvoiceDateChange)="calculatePaymentDate()">
 </app-invoice-detail>
 
-<app-collapsible-well [invoiceItems]="item.invoiceItems"
-                      [routeState]="routeState"
-                      (onAddDistribution)="addDistribution($event)"
-                      (onAddInvoiceItem)="addInvoiceItem($event)"
-                      (onDeleteInvoiceItem)="deleteInvoiceItem($event)">
+<app-collapsible-well [invoiceItems]="item.invoiceItems" [routeState]="routeState" (onAddDistribution)="addDistribution($event)"
+  (onAddInvoiceItem)="addInvoiceItem($event)" (onDeleteInvoiceItem)="deleteInvoiceItem($event)">
 </app-collapsible-well>
 
-<app-document-grid [documents]="item.documents"
-                   (onFileChanged)="fileChanged($event)"
-                   (onFileRemoved)="fileRemoved($event)">
+<app-document-grid [documents]="item.documents" (onFileChanged)="fileChanged($event)" (onFileRemoved)="fileRemoved($event)">
 </app-document-grid>
 
 <div class="component-container">
@@ -63,3 +31,5 @@
     <button md-raised-button (click)="reject()" color="warn" *ngIf="!!item.flowId">Reddet</button>
   </div>
 </div>
+
+{{ item | json }}

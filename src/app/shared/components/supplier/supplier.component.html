@@ -7,25 +7,23 @@
       <button md-raised-button (click)="pickSupplier()" *ngIf="routeState==0" color="primary">Seç</button>
     </div>
 
-
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
       <md-input-container>
-        <input mdInput placeholder="Satıcı Adı" [value]="item.name" disabled />
+        <input mdInput placeholder="Satıcı Adı" [value]="item.supplier.name" disabled />
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Muhasebe Kodu" [value]="item.accountNumber" disabled />
+        <input mdInput placeholder="Muhasebe Kodu" [value]="item.supplier.accountNumber" disabled />
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Vade" [value]="item.expiry" disabled />
+        <input mdInput placeholder="Vade" [value]="item.supplier.expiry" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Vergi Dairesi" [value]="item.supplier.taxOffice" disabled />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Vergi No" [value]="item.supplier.taxNumber" disabled />
       </md-input-container>
     </div>
-    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-      <md-input-container>
-        <input mdInput placeholder="Vergi Dairesi" [value]="item.taxOffice" disabled />
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Vergi No" [value]="item.taxNumber" disabled />
-      </md-input-container>
-    </div>
+    <ng-content></ng-content>
   </div>
 </div>

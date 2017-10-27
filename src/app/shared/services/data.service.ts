@@ -9,7 +9,7 @@ import {
   Result,
   SupplierSearch,
   Supplier
-} from '../models/index';
+} from '../models';
 
 @Injectable()
 export class DataService {
@@ -164,6 +164,12 @@ export class DataService {
 
     return this.http.get(url).map((response: Response) => {
       return response.json().data;
+    }).catch(this.handleError);
+  }
+
+  getSupplierAccounts(currencyId: number, supplierId: number) {
+    return this.http.get('supplierAccounts?supplierId=' + supplierId + '&currencyId=' + currencyId).map((response: Response) => {
+      return <CommonList[]>response.json().data;
     }).catch(this.handleError);
   }
 

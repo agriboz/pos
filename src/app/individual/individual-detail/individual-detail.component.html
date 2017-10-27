@@ -1,0 +1,25 @@
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Ödeme Bilgileri</div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Ödeme Tarihi" [(ngModel)]="item.paymentDate">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker>
+      <md-input-container>
+        <input mdInput placeholder="Tutar" type="number" [(ngModel)]="item.amount" />
+      </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-input-container>
+        <textarea mdInput placeholder="Taksit Açıklaması" [(ngModel)]="item.description" required></textarea>
+      </md-input-container>
+      <md-input-container>
+        <textarea mdInput placeholder="Dekont Açıklaması" [(ngModel)]="item.receiptDescription" required></textarea>
+      </md-input-container>
+    </div>
+  </div>
+</div>

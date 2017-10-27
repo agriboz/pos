@@ -4,7 +4,7 @@ import { MdDialogRef, MdDialog } from '@angular/material';
 import {
   DistributionDetail,
   CommonList
-} from '../../shared/models/index';
+} from '../../shared/models';
 
 @Component({
   selector: 'app-distribution',

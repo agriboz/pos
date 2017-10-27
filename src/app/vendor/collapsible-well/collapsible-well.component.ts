@@ -10,7 +10,7 @@ import {
 import {
   InvoiceItem,
   DistributionDetail,
-  VendorRoute,
+  ModuleRoute,
   ItemChangeState
 } from '../../shared/models';
 
@@ -22,7 +22,7 @@ import {
 export class CollapsibleWellComponent implements OnInit, OnChanges {
 
   @Input() invoiceItems: InvoiceItem[] = [];
-  @Input() routeState: VendorRoute;
+  @Input() routeState: ModuleRoute;
   @Output() onAddDistribution: EventEmitter<any> = new EventEmitter();
   @Output() onAddInvoiceItem: EventEmitter<any> = new EventEmitter();
   @Output() onDeleteInvoiceItem: EventEmitter<any> = new EventEmitter();

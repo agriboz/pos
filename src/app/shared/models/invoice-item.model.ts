@@ -1,8 +1,8 @@
-import { 
-    CommonList, 
+import {
+    CommonList,
     DistributionDetail,
-    ItemChangeState 
-} from './index';
+    ItemChangeState
+} from './';
 
 export class InvoiceItem {
     id: number;

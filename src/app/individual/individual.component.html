@@ -1,2 +1,32 @@
-<app-general-description [currencies]="currencies" [paymentReasons]="paymentReasons" [companies]="companies" [item]="item"></app-general-description>
-{{item | json}}
+<app-description [companies]="companies" [currencies]="currencies" [item]="item">
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+        <md-select fxFlex="25" placeholder="Ödeme Nedeni" name="paymentReason" [(ngModel)]="item.paymentReason.id">
+            <md-option *ngFor="let p of paymentReasons" [value]="p.id">{{ p.name }}
+            </md-option>
+        </md-select>
+        <md-input-container>
+            <input mdInput [mdDatepicker]="picker" placeholder="Belge Tarihi" [(ngModel)]="item.documentDate">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker></md-datepicker>
+        <md-input-container>
+            <input mdInput placeholder="Çeviri Kuru" type="number" [(ngModel)]="item.currencyRate" />
+        </md-input-container>
+        <md-input-container>
+            <textarea mdInput placeholder="Açıklama" [(ngModel)]="item.description" required></textarea>
+        </md-input-container>
+    </div>
+</app-description>
+
+<app-supplier [item]="item" [routeState]="routeState" (onSearchSupplier)="searchSupplier($event)">
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+        <md-select fxFlex="25" placeholder="Hesaplar" name="supplierAccount" [(ngModel)]="item.supplierAccount.id">
+            <md-option *ngFor="let s of supplierAccounts" [value]="s.id">{{ s.name }}
+            </md-option>
+        </md-select>
+    </div>
+</app-supplier>
+
+<app-individual-detail>
+    
+</app-individual-detail>

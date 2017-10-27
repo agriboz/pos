@@ -1,9 +1,11 @@
 import { Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
-
 import { Observable } from 'rxJs/Rx'
-import { CommonList } from '../../models/common-list.model';
-import { Description } from '../../models/description.model';
-import { VendorPayment } from '../../models/vendor-payment.model'
+
+import {
+  CommonList,
+  Description
+} from '../../models';
+import { DataService } from './../../services';
 
 @Component({
   selector: 'app-description',
@@ -17,14 +19,30 @@ export class DescriptionComponent implements OnInit {
   @Input() currencies: CommonList[] = [];
   @Output() onCompanyChanged: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  private referenceNumbers: Map<number, number> = new Map<number, number>();
+
+  constructor(private dataservice: DataService) { }
+
+  ngOnInit() { }
 
   companyChanged(e) {
+    const companyId = e.value;
+    if (this.referenceNumbers.has(companyId)) {
+      this.item.referenceNumber = this.referenceNumbers.get(companyId);
+    } else {
+      this.getReferenceNumber(companyId);
+    }
+
     this.onCompanyChanged.emit(e);
   }
 
-  ngOnInit() {
-
+  getReferenceNumber(companyId: number) {
+    this.dataservice
+      .getReferenceNumber(4, companyId)
+      .subscribe(data => {
+        this.item.referenceNumber = data;
+        this.referenceNumbers.set(companyId, this.item.referenceNumber);
+      });
   }
 
 }

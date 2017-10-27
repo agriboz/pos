@@ -1,12 +1,12 @@
+import { ItemStatePipe } from './../../pipes/item-state.pipe';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Pipe, DebugElement } from '@angular/core';
 import { DocumentGridComponent } from './document-grid.component';
-import { DocumentStatePipe } from './document-state.pipe'
 import { By } from '@angular/platform-browser';
 import {
   ModuleDocument,
-  ModuleDocumentState,
-} from '../../models/index';
+  ItemChangeState,
+} from '../../models';
 
 
 describe('DocumentGridComponent', () => {
@@ -16,7 +16,7 @@ describe('DocumentGridComponent', () => {
   let el: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentGridComponent, DocumentStatePipe ]
+      declarations: [ DocumentGridComponent, ItemStatePipe ]
     })
     .compileComponents();
   }));

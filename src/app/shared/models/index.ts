@@ -9,5 +9,7 @@ export * from './vendor-payment.model';
 export * from './module-document.model';
 export * from './item-change-state.enum';
 export * from './supplier-search.model';
-export * from './vendor-route.enum';
+export * from './module-route.enum';
 export * from './loader.model';
+export * from './individual-payment.model';
+export * from './individual-payment-detail.model';

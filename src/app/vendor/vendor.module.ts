@@ -1,3 +1,5 @@
+import { SupplierModule } from './../shared/components/supplier/supplier.module';
+import { DescriptionModule } from './../shared/components/description/description.module';
 import { LoaderService } from './../shared/components/loader/loader.service';
 import { LoaderComponent } from './../shared/components/loader/loader.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +12,6 @@ import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorComponent } from './vendor.component';
 import { DescriptionComponent } from '../shared/components/description/description.component';
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
-import { SupplierComponent } from '../shared/components/supplier/supplier.component';
 import { DistributionComponent } from './distribution/distribution.component';
 import { DialogService } from '../shared/services/dialog.service';
 import { CollapsibleWellComponent } from './collapsible-well/collapsible-well.component';
@@ -28,6 +29,8 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     ReactiveFormsModule,
     CommonModule,
     VendorRoutingModule,
+    DescriptionModule,
+    SupplierModule
   ],
   entryComponents: [
     DistributionComponent,
@@ -40,17 +43,14 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
   ],
   declarations: [
     VendorComponent,
-    DescriptionComponent,
     InvoiceDetailComponent,
-    SupplierComponent,
     DistributionComponent,
     CollapsibleWellComponent,
     DistributionGridComponent,
     DocumentGridComponent,
     SupplierDialogComponent,
     ItemStatePipe,
-    InvoiceItemDialogComponent,
-
+    InvoiceItemDialogComponent
   ]
 })
 export class VendorModule {

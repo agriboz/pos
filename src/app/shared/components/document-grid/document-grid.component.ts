@@ -7,7 +7,7 @@ import {
   ModuleDocument,
   ItemChangeState,
   VendorPayment
-} from '../../models/index';
+} from '../../models';
 
 @Component({
   selector: 'app-document-grid',

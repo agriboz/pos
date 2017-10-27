@@ -1,6 +1,7 @@
+import { DialogService } from './../../services/dialog.service';
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
-import { Supplier, VendorRoute } from '../../models/index';
+import { Supplier, ModuleRoute } from '../../models';
 
 @Component({
   selector: 'app-supplier',
@@ -9,16 +10,23 @@ import { Supplier, VendorRoute } from '../../models/index';
 })
 export class SupplierComponent implements OnInit {
 
-  @Input() item: Supplier = new Supplier();
-  @Input() routeState: VendorRoute;
+  @Input() item;
+  @Input() routeState: ModuleRoute;
   @Output() onSearchSupplier: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private dialogservice: DialogService) { }
 
   ngOnInit() {
   }
 
   pickSupplier() {
-    this.onSearchSupplier.emit();
+    this.dialogservice
+    .searchSupplier(this.item.company.id)
+    .subscribe(data =>  {
+      if (data) {
+        this.item.supplier = data;
+        this.onSearchSupplier.emit();
+      }
+    });
   }
 }

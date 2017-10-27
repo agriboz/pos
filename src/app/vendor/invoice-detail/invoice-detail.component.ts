@@ -3,8 +3,8 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import {
   VendorPayment,
   CommonList,
-  VendorRoute
- } from '../../shared/models/index';
+  ModuleRoute
+ } from '../../shared/models';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -15,7 +15,7 @@ export class InvoiceDetailComponent implements OnInit {
 
   @Input() item: VendorPayment;
   @Input() stoppageAccounts: CommonList[] = [];
-  @Input() routeState: VendorRoute;
+  @Input() routeState: ModuleRoute;
   @Output() onInvoiceDateChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {

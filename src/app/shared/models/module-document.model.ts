@@ -1,6 +1,6 @@
 import {
     ItemChangeState
-  } from './index';
+  } from './';
 
 export class ModuleDocument {
     id: number;

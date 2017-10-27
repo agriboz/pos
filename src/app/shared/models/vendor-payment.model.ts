@@ -4,7 +4,7 @@ import {
   Supplier,
   InvoiceItem,
   ModuleDocument
-} from './index';
+} from './';
 
 export class VendorPayment {
   id: number;

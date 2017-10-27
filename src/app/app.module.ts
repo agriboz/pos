@@ -20,9 +20,6 @@ import { ToastrService } from './shared/services/toastr.service';
 import { DialogService } from './shared/services/dialog.service';
 //import 'hammerjs';
 
-
-
-
 const appRoutes: Routes = [
   {
     path: '',
@@ -46,8 +43,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     IndividualModule,
     VendorModule,
-    CdkTableModule,
-
+    CdkTableModule
   ],
   providers: [
     DataService,
@@ -56,9 +52,9 @@ const appRoutes: Routes = [
     {
       provide: Http,
       useFactory: httpService,
-      deps: [XHRBackend, RequestOptions, ToastrService, LoaderService],
+      deps: [XHRBackend, RequestOptions, ToastrService, LoaderService]
     },
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

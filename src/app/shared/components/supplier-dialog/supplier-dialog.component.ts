@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { MdDialogRef, MdDialog } from '@angular/material';
-import { SupplierSearch, Supplier } from '../../models/index';
+import { SupplierSearch, Supplier } from '../../models';
 
 @Component({
   selector: 'app-supplier-dialog',

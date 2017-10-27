@@ -1,14 +1,27 @@
-<div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
-  <md-select fxFlex="25" placeholder="Şirket"  name="company" [(ngModel)]="item?.company.id" (change)="companyChanged($event)">
-    <md-option *ngFor="let c of companies"  [value]="c.id">{{ c.name }}
-    </md-option>
-  </md-select>
-  <!--<pre>{{item.company | json}}</pre>-->
-  <md-select fxFlex="25" placeholder="Para Birimi" name="currency" [(ngModel)]="item?.currency.id">
-    <md-option *ngFor="let c of currencies" [value]="c.id">{{ c.name }}
-    </md-option>
-  </md-select>
-  <md-input-container>
-    <input mdInput placeholder="Referans Numarası" [ngModel]="item?.referenceNumber" disabled />
-  </md-input-container>
+<div class="component-container">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Genel Bilgiler</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="60px" class="form-viewer-body">
+      <md-select fxFlex="25" placeholder="Şirket" name="company" [(ngModel)]="item?.company.id" (change)="companyChanged($event)">
+        <md-option *ngFor="let c of companies" [value]="c.id">{{ c.name }}
+        </md-option>
+      </md-select>
+      <md-select fxFlex="25" placeholder="Para Birimi" name="currency" [(ngModel)]="item?.currency.id">
+        <md-option *ngFor="let c of currencies" [value]="c.id">{{ c.name }}
+        </md-option>
+      </md-select>
+      <md-input-container>
+        <input mdInput placeholder="Referans Numarası" [ngModel]="item?.referenceNumber" disabled />
+      </md-input-container>
+      <md-input-container>
+          <input mdInput placeholder="Toplam Tutar" [ngModel]="item.totalAmount" disabled />
+        </md-input-container>
+    </div>
+
+    <ng-content></ng-content>
+
+  </div>
 </div>

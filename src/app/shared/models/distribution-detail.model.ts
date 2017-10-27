@@ -1,7 +1,7 @@
-import { 
+import {
     CommonList,
     ItemChangeState
-} from './index';
+} from './';
 
 export class DistributionDetail {
     id: number;

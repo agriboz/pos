@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialogRef, MdDialog } from '@angular/material';
-import { CommonList, InvoiceItem } from '../../shared/models/index';
+import { CommonList, InvoiceItem } from '../../shared/models';
 
 @Component({
   selector: 'app-invoice-item-dialog',
