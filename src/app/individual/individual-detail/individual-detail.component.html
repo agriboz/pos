@@ -21,5 +21,8 @@
         <textarea mdInput placeholder="Dekont Açıklaması" [(ngModel)]="item.receiptDescription" required></textarea>
       </md-input-container>
     </div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="form-viewer-body">
+      <button type="button" md-raised-button (click)="addDetailItem(item)">Ekle</button>
+    </div>
   </div>
 </div>

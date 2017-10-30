@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/modules/shared.module';
 import { SupplierModule } from './../shared/components/supplier/supplier.module';
 import { DescriptionModule } from './../shared/components/description/description.module';
 import { LoaderService } from './../shared/components/loader/loader.service';
@@ -18,7 +19,6 @@ import { CollapsibleWellComponent } from './collapsible-well/collapsible-well.co
 import { DistributionGridComponent } from './distribution-grid/distribution-grid.component';
 import { DocumentGridComponent } from '../shared/components/document-grid/document-grid.component';
 import { SupplierDialogComponent } from '../shared/components/supplier-dialog/supplier-dialog.component';
-import { ItemStatePipe } from '../shared/pipes/item-state.pipe';
 import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-dialog.component';
 
 @NgModule({
@@ -30,7 +30,8 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     CommonModule,
     VendorRoutingModule,
     DescriptionModule,
-    SupplierModule
+    SupplierModule,
+    SharedModule
   ],
   entryComponents: [
     DistributionComponent,
@@ -49,7 +50,6 @@ import { InvoiceItemDialogComponent } from './invoice-item-dialog/invoice-item-d
     DistributionGridComponent,
     DocumentGridComponent,
     SupplierDialogComponent,
-    ItemStatePipe,
     InvoiceItemDialogComponent
   ]
 })

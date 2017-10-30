@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import * as moment from "moment";
+import * as moment from 'moment';
 
-import { DistributionComponent } from "./distribution/distribution.component";
-import { ToastrService } from "../shared/services/toastr.service";
+import { DistributionComponent } from './distribution/distribution.component';
+import { ToastrService } from '../shared/services';
 
 import {
   VendorPayment,
@@ -16,14 +16,14 @@ import {
   ModuleRoute,
   ItemChangeState,
   ModuleDocument
-} from "../shared/models";
+} from '../shared/models';
 
-import { DataService, DialogService } from "../shared/services";
+import { DataService, DialogService } from '../shared/services';
 
 @Component({
-  selector: "app-vendor",
-  templateUrl: "./vendor.component.html",
-  styleUrls: ["./vendor.component.css"],
+  selector: 'app-vendor',
+  templateUrl: './vendor.component.html',
+  styleUrls: ['./vendor.component.css'],
   providers: [DataService]
 })
 export class VendorComponent implements OnInit {
@@ -47,13 +47,13 @@ export class VendorComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.routeState = this.activatedRoute.snapshot.data["routeState"];
+    this.routeState = this.activatedRoute.snapshot.data['routeState'];
     const userName: string = this.activatedRoute.snapshot.queryParams.userName;
 
     sessionStorage.clear();
 
     if (userName !== undefined) {
-      sessionStorage.setItem("userName", userName);
+      sessionStorage.setItem('userName', userName);
     }
 
     switch (this.routeState) {
@@ -80,22 +80,22 @@ export class VendorComponent implements OnInit {
     const errors: string[] = [];
 
     if (!this.item.processDate && this.item.isLastStep) {
-      errors.push("İşlem tarihi alanı boş geçilemez");
+      errors.push('İşlem tarihi alanı boş geçilemez');
     }
     if (!this.item.description) {
-      errors.push("Açıklama alanı boş geçilemez");
+      errors.push('Açıklama alanı boş geçilemez');
     }
     if (!this.item.department || !this.item.department.id) {
-      errors.push("Departman alanı boş geçilemez");
+      errors.push('Departman alanı boş geçilemez');
     }
     if (
       !this.item.invoiceItems ||
       this.item.invoiceItems.some(x => !x.distributionDetails)
     ) {
-      errors.push("Dağıtım kalemleri girilmeden kayıt işlemi yapıalamz");
+      errors.push('Dağıtım kalemleri girilmeden kayıt işlemi yapıalamz');
     }
 
-    this.toastr.showToaster(errors.join(" // "));
+    this.toastr.showToaster(errors.join(' // '));
 
     return errors.length === 0;
   }
@@ -179,7 +179,7 @@ export class VendorComponent implements OnInit {
             ...invoiceItem.distributionDetails,
             data
           ];
-          this.toastr.showToaster("İşlem Başarılı");
+          this.toastr.showToaster('İşlem Başarılı');
         }
       });
   }
@@ -206,10 +206,10 @@ export class VendorComponent implements OnInit {
 
     if (this.routeState === ModuleRoute.New) {
       this.item.paymentDate = moment(this.item.paymentDate)
-        .add("day", 1)
+        .add('day', 1)
         .toDate();
       this.item.invoiceDate = moment(this.item.invoiceDate)
-        .add("day", 1)
+        .add('day', 1)
         .toDate();
     }
 
@@ -249,7 +249,7 @@ export class VendorComponent implements OnInit {
   }
 
   approve() {
-    this.item.processDate = moment(this.item.processDate).add("day", 1);
+    this.item.processDate = moment(this.item.processDate).add('day', 1);
     this.dataservice
       .approveVendorPayment(this.item)
       .subscribe(data => this.raiseToastr(data));
@@ -276,7 +276,7 @@ export class VendorComponent implements OnInit {
       const document: ModuleDocument = new ModuleDocument();
       document.file = fileList[0];
       document.name =
-        this.item.referenceNumber.toString() + "_" + document.file.name;
+        this.item.referenceNumber.toString() + '_' + document.file.name;
       document.state = ItemChangeState.Added;
 
       this.item.documents = [...this.item.documents, document];
@@ -319,7 +319,7 @@ export class VendorComponent implements OnInit {
   calculatePaymentDate() {
     if (this.item && this.item.supplier && this.item.invoiceDate) {
       this.item.paymentDate = moment(this.item.invoiceDate)
-        .add("day", this.item.supplier.expiry)
+        .add('day', this.item.supplier.expiry)
         .toDate();
     }
   }

@@ -6,7 +6,9 @@ import 'rxjs/add/operator/map'
 import {
   CommonList,
   IndividualPayment,
-  ModuleRoute
+  ModuleRoute,
+  ItemChangeState,
+  IndividualPaymentDetail
 } from '../shared/models';
 import { DataService } from '../shared/services'
 
@@ -27,7 +29,7 @@ export class IndividualComponent implements OnInit {
 
   constructor(private dataservice: DataService
             , private activatedRoute: ActivatedRoute) {
-    this.routeState = this.activatedRoute.snapshot.data["routeState"];
+    this.routeState = this.activatedRoute.snapshot.data['routeState'];
   }
 
   ngOnInit() {
@@ -54,8 +56,16 @@ export class IndividualComponent implements OnInit {
       .subscribe(data => this.paymentReasons = data);
   }
 
+  onDetailAdded(data: IndividualPaymentDetail) {
+    data.state = ItemChangeState.Added;
+    data.transferState = 'Aktarılmadı';
+    this.item.details = [...this.item.details, data];
+
+    console.log(this.item.details);
+  }
+
   searchSupplier(e) {
-    console.log("searchSupplier tetiklendi");
+    console.log('searchSupplier tetiklendi');
 /*     const supplierId: number = e.value;
 
     this.dataservice

@@ -1,0 +1,32 @@
+<div class="component-container" *ngIf="!!item.details.length">
+  <div class="form-viewer-wrapper">
+    <div class="form-viewer-title">
+      <div class="form-viewer-title-spacer">Ödeme Kalemleri</div>
+    </div>
+
+    <table class="mat-table">
+      <thead>
+        <tr class="mat-header-row">
+          <th class="mat-header-cell">Ödeme Tarihi</th>
+          <th class="mat-header-cell">SAP Belge No</th>
+          <th class="mat-header-cell">Durumu</th>
+          <th class="mat-header-cell">Tutar</th>
+          <th class="mat-header-cell">Taksit Açıklama</th>
+          <th class="mat-header-cell">Dekont Açıklama</th>
+          <th class="mat-header-cell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of item.details | exclude ; let i = index" class="mat-row">
+          <td class="mat-cell">{{ d.paymentDate }}</td>
+          <td class="mat-cell">{{ d.code }}</td>
+          <td class="mat-cell">{{ d.transferState }}</td>
+          <td class="mat-cell">{{ d.amount }}</td>
+          <td class="mat-cell">{{ d.description }}</td>
+          <td class="mat-cell">{{ d.receiptDescription }}</td>
+          <td class="mat-cell" fxLayoutAlign="end end"><button md-raised-button (click)="deleteDetail(d, i)">Sil</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

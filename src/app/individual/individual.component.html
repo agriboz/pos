@@ -27,6 +27,12 @@
     </div>
 </app-supplier>
 
-<app-individual-detail>
+<app-individual-detail (onDetailAdded)="onDetailAdded($event)">
     
 </app-individual-detail>
+
+<app-individual-grid [item]="item">
+
+</app-individual-grid>
+
+{{ item | json }}

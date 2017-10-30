@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndividualListComponent } from './individual-list.component';
+import { IndividualGridComponent } from './individual-grid.component';
 
-describe('IndividualListComponent', () => {
-  let component: IndividualListComponent;
-  let fixture: ComponentFixture<IndividualListComponent>;
+describe('IndividualGridComponent', () => {
+  let component: IndividualGridComponent;
+  let fixture: ComponentFixture<IndividualGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IndividualListComponent ]
+      declarations: [ IndividualGridComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IndividualListComponent);
+    fixture = TestBed.createComponent(IndividualGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

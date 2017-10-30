@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { IndividualPaymentDetail } from './../../shared/models/individual-payment-detail.model';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-individual-detail',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndividualDetailComponent implements OnInit {
 
+  @Output() onDetailAdded: EventEmitter<any> = new EventEmitter<any>();
+  private item: IndividualPaymentDetail = new IndividualPaymentDetail();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  addDetailItem(i) {
+    this.onDetailAdded.emit(i);
+  }
 }

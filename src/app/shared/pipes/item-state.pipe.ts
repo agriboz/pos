@@ -7,7 +7,6 @@ export class ItemStatePipe implements PipeTransform {
       if (!values || !values.length) {
         return [];
       }
-      
       return values.filter(x => x.state !== ItemChangeState.Deleted);
     }
 }
