@@ -28,11 +28,18 @@
 </app-supplier>
 
 <app-individual-detail (onDetailAdded)="onDetailAdded($event)">
-    
 </app-individual-detail>
 
 <app-individual-grid [item]="item">
-
 </app-individual-grid>
+
+<div class="component-container">
+    <div fxLayout="row" class="form-viewer-wrapper no-shadow" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <button md-raised-button (click)="startFlow()" color="primary" *ngIf="!item.flowId">Onaya Gönder</button>
+      <button md-raised-button (click)="save()">Kaydet</button>
+      <button md-raised-button (click)="approve()" color="primary" *ngIf="!!item.flowId">Onayla</button>
+      <button md-raised-button (click)="reject()" color="warn" *ngIf="!!item.flowId">Reddet</button>
+    </div>
+  </div>
 
 {{ item | json }}

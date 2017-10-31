@@ -7,7 +7,6 @@ import {
 export class IndividualPayment {
     id: number;
     flowId: number;
-    code: number;
     referenceNumber: number;
     company: CommonList = new CommonList();
     currency: CommonList = new CommonList();
